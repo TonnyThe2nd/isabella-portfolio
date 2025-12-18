@@ -1,0 +1,146 @@
+<section class="sobre-section" id="projeto">
+  <div class="sobre-container">
+    <div class="sobre-content">
+     
+
+      <div class="skills-section" [@fadeIn]>
+        <h2 class="section-title">Minhas <span class="highlight">Habilidades</span></h2>
+        
+        <div class="skills-categories">
+          <div class="skill-category">
+            <h3>Frontend</h3>
+            <div class="skills-list">
+              <div *ngFor="let skill of getSkillsByCategory('Frontend')" class="skill-item">
+                <div class="skill-header">
+                  <span class="skill-name">{{ skill.name }}</span>
+                  <span class="skill-percentage">{{ skill.level }}%</span>
+                </div>
+                <div class="skill-bar">
+                  <div class="skill-progress" [style.width.%]="skill.level"></div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="skill-category">
+            <h3>Backend & DevOps</h3>
+            <div class="skills-list">
+              <div *ngFor="let skill of getSkillsByCategory('Backend')" class="skill-item">
+                <div class="skill-header">
+                  <span class="skill-name">{{ skill.name }}</span>
+                  <span class="skill-percentage">{{ skill.level }}%</span>
+                </div>
+                <div class="skill-bar">
+                  <div class="skill-progress" [style.width.%]="skill.level"></div>
+                </div>
+              </div>
+              <div *ngFor="let skill of getSkillsByCategory('Database')" class="skill-item">
+                <div class="skill-header">
+                  <span class="skill-name">{{ skill.name }}</span>
+                  <span class="skill-percentage">{{ skill.level }}%</span>
+                </div>
+                <div class="skill-bar">
+                  <div class="skill-progress" [style.width.%]="skill.level"></div>
+                </div>
+              </div>
+              <div *ngFor="let skill of getSkillsByCategory('DevOps')" class="skill-item">
+                <div class="skill-header">
+                  <span class="skill-name">{{ skill.name }}</span>
+                  <span class="skill-percentage">{{ skill.level }}%</span>
+                </div>
+                <div class="skill-bar">
+                  <div class="skill-progress" [style.width.%]="skill.level"></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="projects-section">
+    <div class="projects-header" [@fadeIn]>
+      <h2 class="projects-title">Meus <span class="highlight">Projetos</span></h2>
+      <p class="projects-subtitle">Uma linha do tempo dos meus trabalhos mais recentes</p>
+    </div>
+
+    <div class="projects-wrapper">
+      <div class="timeline-container">
+        <div class="timeline-line">
+          <div class="line-background"></div>
+          <div 
+            class="line-progress" 
+            [style.height.%]="getProgressPercentage()">
+          </div>
+        </div>
+  
+        <div class="projects-grid">
+          <div 
+            *ngFor="let project of projects; let i = index" 
+            class="project-card-wrapper"
+            [id]="'project-' + project.id"
+            [class.visible]="visibleProjects.includes(project)">
+            
+            <div class="timeline-marker" 
+                 [class.active]="activeProject === project.id"
+                 (click)="scrollToProject(project.id)">
+              <div class="marker-dot"></div>
+              <div class="marker-pulse"></div>
+              <span class="marker-number">{{ i + 1 }}</span>
+            </div>
+  
+            <mat-card class="project-card" 
+                      [class.left]="i % 2 === 0" 
+                      [class.right]="i % 2 !== 0"
+                      [@slideInLeft]="i % 2 === 0 && visibleProjects.includes(project)"
+                      [@slideInRight]="i % 2 !== 0 && visibleProjects.includes(project)">
+              <div class="card-image">
+                <img 
+                  [src]="project.imageUrl" 
+                  [alt]="project.title"
+                  loading="lazy">
+                <div class="image-overlay"></div>
+              </div>
+              
+              <mat-card-content>
+                <div class="project-header">
+                  <h3 class="project-title">{{ project.title }}</h3>
+                  <div class="project-badge">
+                    <span>#{{ ('0' + (i + 1)).slice(-2) }}</span>
+                  </div>
+                </div>
+                
+                <p class="project-description">{{ project.description }}</p>
+                
+              </mat-card-content>
+              
+              <mat-card-actions class="card-actions">
+                <a 
+                  *ngIf="project.github" 
+                  [href]="project.github" 
+                  target="_blank" 
+                  rel="noopener noreferrer"
+                  mat-stroked-button
+                  class="github-button">
+                  Código
+                </a>
+                <a 
+                  *ngIf="project.link" 
+                  [href]="project.link" 
+                  target="_blank" 
+                  rel="noopener noreferrer"
+                  mat-raised-button
+                  color="primary"
+                  class="demo-button">
+                  Demo
+                </a>
+              </mat-card-actions>
+            </mat-card>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

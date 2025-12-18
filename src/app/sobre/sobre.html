@@ -1,0 +1,43 @@
+<section class="sobre-section" id="sobre">
+  <!-- Seção "Sobre Mim" -->
+  <div class="sobre-container">
+    <div class="sobre-header" @fadeIn>
+      <h1 class="sobre-title">Sobre <span class="highlight">Mim</span></h1>
+      <p class="sobre-subtitle">Conheça minha jornada, habilidades e projetos</p>
+    </div>
+
+    <div class="sobre-content">
+      <!-- Card de informações pessoais -->
+      <mat-card class="profile-card" @fadeIn>
+        <div class="profile-header">
+          <div class="profile-avatar">
+            <span class="avatar-icon">👨‍💻</span>
+          </div>
+          <div class="profile-info">
+            <h2>{{ sobreMim.nome }}</h2>
+            <p class="profile-title">{{ sobreMim.titulo }}</p>
+          </div>
+        </div>
+        
+        <mat-card-content>
+          <p class="profile-description">{{ sobreMim.descricao }}</p>
+          
+          <div class="stats-grid">
+            <div class="stat-item">
+              <div class="stat-number">{{ sobreMim.experiencia }}</div>
+              <div class="stat-label">Anos de Experiência</div>
+            </div>
+            <div class="stat-item">
+              <div class="stat-number">{{ sobreMim.projetosCompletos }}</div>
+              <div class="stat-label">Projetos Completos</div>
+            </div>
+            <div class="stat-item">
+              <div class="stat-number">{{ sobreMim.clientesSatisfeitos }}</div>
+              <div class="stat-label">Clientes Satisfeitos</div>
+            </div>
+          </div>
+        </mat-card-content>
+      </mat-card>
+    </div>
+  </div>
+</section>

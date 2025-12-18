@@ -1,0 +1,90 @@
+<mat-toolbar class="header-toolbar">
+  <!-- Logo personalizada -->
+  <div class="logo-container" (click)="rolarComponente('inicio')">
+    <div class="logo-icon">IB</div>
+    <div class="logo-text">
+      <span class="logo-name">Isabella</span>
+      <span class="logo-subtitle">Publicitária & Social Media</span>
+    </div>
+  </div>
+
+  <span class="spacer"></span>
+
+  <!-- Menu Desktop -->
+  <nav class="menu-desktop">
+    <button mat-button class="nav-button" 
+            [class.active]="activeSection === 'inicio'"
+            (click)="rolarComponente('inicio')">
+      <span>Início</span>
+      <div class="nav-indicator"></div>
+    </button>
+
+    <button mat-button class="nav-button" 
+            [class.active]="activeSection === 'sobre'"
+            (click)="rolarComponente('sobre')">
+      <span>Quem sou eu?</span>
+      <div class="nav-indicator"></div>
+    </button>
+
+    <button mat-button class="nav-button" 
+            [class.active]="activeSection === 'projeto'"
+            (click)="rolarComponente('projeto')">
+      <span>Projetos</span>
+      <div class="nav-indicator"></div>
+    </button>
+
+    <button mat-button class="nav-button" 
+            [class.active]="activeSection === 'contato'"
+            (click)="rolarComponente('contato')">
+      <span>Contato</span>
+      <div class="nav-indicator"></div>
+    </button>
+
+  </nav>
+
+  <button mat-icon-button class="menu-mobile" [matMenuTriggerFor]="mobileMenu" aria-label="Menu">
+    <mat-icon>menu</mat-icon>
+  </button>
+
+  <mat-menu #mobileMenu="matMenu" class="mobile-menu-panel">
+    <div class="mobile-menu-header">
+      <div class="mobile-logo">
+        <div class="mobile-logo-icon">IB</div>
+        <div class="mobile-logo-text">
+          <div class="mobile-logo-name">Isabella</div>
+          <div class="mobile-logo-subtitle">Marketing Digital</div>
+        </div>
+      </div>
+    </div>
+
+    <mat-divider></mat-divider>
+
+    <button mat-menu-item (click)="rolarComponente('inicio')" class="mobile-menu-item">
+      <mat-icon>home</mat-icon>
+      <span>Início</span>
+      <span class="menu-badge">🏠</span>
+    </button>
+
+    <button mat-menu-item (click)="rolarComponente('sobre')" class="mobile-menu-item">
+      <mat-icon>person</mat-icon>
+      <span>Quem sou eu?</span>
+      <span class="menu-badge">✨</span>
+    </button>
+
+    <button mat-menu-item (click)="rolarComponente('projeto')" class="mobile-menu-item">
+      <mat-icon>work</mat-icon>
+      <span>Meus Projetos</span>
+      <span class="menu-badge">🎨</span>
+    </button>
+
+    <button mat-menu-item (click)="rolarComponente('contato')" class="mobile-menu-item">
+      <mat-icon>mail</mat-icon>
+      <span>Contato</span>
+      <span class="menu-badge">💌</span>
+    </button>
+
+    <mat-divider></mat-divider>
+
+    
+  </mat-menu>
+</mat-toolbar>
