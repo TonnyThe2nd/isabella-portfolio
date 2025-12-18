@@ -573,3 +573,32 @@
     max-width: 300px !important;
   }
 }
+@media (max-width: 900px) {
+
+  .mobile-menu-header {
+    background: linear-gradient(135deg, #ff5555, #ff7b7b) !important;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.25);
+  }
+  .mobile-menu-item {
+    background: linear-gradient(135deg, #ff5555, #ff7b7b) !important;
+
+    backdrop-filter: none !important;
+    -webkit-backdrop-filter: none !important;
+
+    box-shadow:
+      0 20px 40px rgba(255, 107, 107, 0.45) !important;
+
+    border: none !important;
+  }
+
+  /* textos dentro do menu */
+  .mobile-menu-panel,
+  .mobile-menu-panel * {
+    color: white !important;
+  }
+
+  /* ícones */
+  .mobile-menu-panel mat-icon {
+    color: white !important;
+  }
+}
