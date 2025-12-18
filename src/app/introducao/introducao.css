@@ -825,7 +825,6 @@
   }
 }
 
-/* Ajuste para telas muito grandes */
 @media (min-width: 1400px) {
   .intro-card {
     max-width: 1400px;
