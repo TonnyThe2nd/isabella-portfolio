@@ -50,7 +50,7 @@
 }
 
 .highlight {
-  background: linear-gradient(135deg, #ff6b6b 0%, #ff8e8e 100%);
+  background: linear-gradient(135deg, #b50000 0%, #e80000 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
@@ -64,7 +64,7 @@
   left: 0;
   width: 100%;
   height: 4px;
-  background: linear-gradient(135deg, #ff6b6b 0%, #ff8e8e 100%);
+  background: linear-gradient(135deg, #b50000 0%, #e80000 100%);
   border-radius: 2px;
 }
 
@@ -101,7 +101,7 @@
 }
 
 .profile-header {
-  background: linear-gradient(135deg, #ff6b6b 0%, #ff8e8e 100%);
+  background: linear-gradient(135deg, #b50000 0%, #e80000 100%);
   padding: 50px;
   display: flex;
   align-items: center;
@@ -231,7 +231,7 @@
 }
 
 .stat-item:hover .stat-number {
-  color: #ff6b6b;
+  color: #b50000;
   transform: scale(1.1);
 }
 
@@ -337,7 +337,7 @@
 }
 
 .skill-percentage {
-  color: #ff6b6b;
+  color: #b50000;
   font-weight: 700;
   font-size: 1.1rem;
 }
@@ -354,7 +354,7 @@
 
 .skill-progress {
   height: 100%;
-  background: linear-gradient(135deg, #ff6b6b, #ff8e8e);
+  background: linear-gradient(135deg, #b50000, #e80000);
   border-radius: 6px;
   transition: width 1.2s cubic-bezier(0.4, 0, 0.2, 1);
   position: relative;
@@ -403,7 +403,7 @@
 }
 
 .projects-title .highlight {
-  background: linear-gradient(135deg, #ff6b6b 0%, #ff8e8e 100%);
+  background: linear-gradient(135deg, #b50000 0%, #e80000 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
@@ -416,7 +416,7 @@
   left: 0;
   width: 100%;
   height: 4px;
-  background: linear-gradient(135deg, #ff6b6b 0%, #ff8e8e 100%);
+  background: linear-gradient(135deg, #b50000 0%, #e80000 100%);
   border-radius: 2px;
 }
 
@@ -468,7 +468,7 @@
   top: 0;
   left: 0;
   width: 100%;
-  background: linear-gradient(to bottom, #ff6b6b, #ff8e8e);
+  background: linear-gradient(to bottom, #b50000, #e80000);
   border-radius: 3px;
   transition: height 0.8s cubic-bezier(0.4, 0, 0.2, 1);
   box-shadow: 0 0 20px rgba(255, 107, 107, 0.3);
@@ -514,13 +514,13 @@
 }
 
 .timeline-marker:hover .marker-dot {
-  background: linear-gradient(135deg, #ff6b6b 0%, #ff8e8e 100%);
+  background: linear-gradient(135deg, #b50000 0%, #e80000 100%);
   transform: scale(1.3);
   box-shadow: 0 0 30px rgba(255, 107, 107, 0.5);
 }
 
 .timeline-marker.active .marker-dot {
-  background: linear-gradient(135deg, #ff6b6b 0%, #ff8e8e 100%);
+  background: linear-gradient(135deg, #b50000 0%, #e80000 100%);
   box-shadow: 
     0 0 30px rgba(255, 107, 107, 0.6),
     inset 0 1px 0 rgba(255, 255, 255, 0.3);
@@ -578,7 +578,7 @@
   transform: translate(-50%, -50%);
   font-size: 13px;
   font-weight: 700;
-  color: #ff6b6b;
+  color: #b50000;
   z-index: 3;
   transition: all 0.3s ease;
 }
@@ -682,7 +682,7 @@
 }
 
 .project-badge {
-  background: linear-gradient(135deg, #ff6b6b, #ff8e8e);
+  background: linear-gradient(135deg, #b50000, #e80000);
   color: white;
   padding: 8px 16px;
   border-radius: 16px;
@@ -713,7 +713,7 @@
   background: linear-gradient(135deg, 
     rgba(255, 107, 107, 0.1), 
     rgba(255, 142, 142, 0.15));
-  color: #ff6b6b;
+  color: #b50000;
   padding: 8px 16px;
   border-radius: 20px;
   font-size: 0.9rem;
@@ -723,7 +723,7 @@
 }
 
 .tech-badge:hover {
-  background: linear-gradient(135deg, #ff6b6b, #ff8e8e);
+  background: linear-gradient(135deg, #b50000, #e80000);
   color: white;
   border-color: transparent;
   transform: translateY(-2px);
@@ -775,7 +775,7 @@
     rgba(255, 107, 107, 0.1), 
     rgba(255, 142, 142, 0.15)) !important;
   border: 2px solid rgba(255, 107, 107, 0.3) !important;
-  color: #ff6b6b !important;
+  color: #b50000 !important;
 }
 
 .github-button:hover {
@@ -788,7 +788,7 @@
 }
 
 .demo-button {
-  background: linear-gradient(135deg, #ff6b6b, #ff8e8e) !important;
+  background: linear-gradient(135deg, #b50000, #e80000) !important;
   color: white !important;
   border: 2px solid transparent !important;
   box-shadow: 0 8px 20px rgba(255, 107, 107, 0.3) !important;

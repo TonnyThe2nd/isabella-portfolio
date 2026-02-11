@@ -121,7 +121,7 @@
   object-fit: cover;
   border-radius: 50%;
   border: 8px solid transparent;
-  background: linear-gradient(135deg, #ff6b6b, #ff8e8e) border-box;
+  background: linear-gradient(135deg, #b50000, #e80000) border-box;
   padding: 8px;
   position: relative;
   z-index: 2;
@@ -146,7 +146,7 @@
   left: -15px;
   right: -15px;
   bottom: -15px;
-  background: linear-gradient(135deg, #ff6b6b, #ff8e8e);
+  background: linear-gradient(135deg, #b50000, #e80000);
   border-radius: 50%;
   filter: blur(25px);
   opacity: 0.4;
@@ -163,7 +163,7 @@
   position: absolute;
   top: 25px;
   right: 25px;
-  background: linear-gradient(135deg, #ff6b6b, #ff8e8e);
+  background: linear-gradient(135deg, #b50000, #e80000);
   width: 60px;
   height: 60px;
   border-radius: 50%;
@@ -240,7 +240,7 @@
   background: linear-gradient(135deg, 
     rgba(255, 107, 107, 0.1), 
     rgba(255, 142, 142, 0.15));
-  color: #ff6b6b;
+  color: #b50000;
   border-color: rgba(255, 107, 107, 0.3);
   box-shadow: 0 5px 15px rgba(255, 107, 107, 0.15);
 }
@@ -284,7 +284,7 @@
 .wave {
   font-size: 2.5rem;
   animation: wave 2s infinite;
-  color: #ff6b6b;
+  color: #b50000;
 }
 
 @keyframes wave {
@@ -302,7 +302,7 @@
 }
 
 .highlight-name {
-  background: linear-gradient(135deg, #ff6b6b, #ff8e8e);
+  background: linear-gradient(135deg, #b50000, #e80000);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
@@ -317,7 +317,7 @@
   left: 0;
   width: 100%;
   height: 3px;
-  background: linear-gradient(135deg, #ff6b6b, #ff8e8e);
+  background: linear-gradient(135deg, #b50000, #e80000);
   border-radius: 2px;
 }
 
@@ -330,7 +330,7 @@
 }
 
 .highlight {
-  background: linear-gradient(135deg, #ff6b6b, #ff8e8e);
+  background: linear-gradient(135deg, #b50000, #e80000);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
@@ -343,7 +343,7 @@
     rgba(255, 142, 142, 0.1));
   padding: 24px 28px;
   border-radius: 20px;
-  border-left: 4px solid #ff6b6b;
+  border-left: 4px solid #b50000;
   margin-bottom: 30px;
   display: flex;
   align-items: flex-start;
@@ -373,7 +373,7 @@
 .quote-icon {
   font-size: 1.8rem;
   flex-shrink: 0;
-  color: #ff6b6b;
+  color: #b50000;
   position: relative;
   z-index: 1;
 }
@@ -440,7 +440,7 @@
   font-size: 1.5rem;
   flex-shrink: 0;
   margin-top: 2px;
-  color: #ff6b6b;
+  color: #b50000;
 }
 
 /* CTA */
@@ -455,7 +455,7 @@
   border-radius: 28px !important;
   font-weight: 700 !important;
   font-size: 1.1rem !important;
-  background: linear-gradient(135deg, #ff6b6b, #ff8e8e) !important;
+  background: linear-gradient(135deg, #b50000, #e80000) !important;
   transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1) !important;
   color: white !important;
   border: none !important;
@@ -500,8 +500,8 @@
   font-weight: 700 !important;
   font-size: 1.1rem !important;
   border-width: 2px !important;
-  border-color: #ff6b6b !important;
-  color: #ff6b6b !important;
+  border-color: #b50000 !important;
+  color: #b50000 !important;
   background: linear-gradient(135deg, 
     rgba(255, 107, 107, 0.1), 
     rgba(255, 142, 142, 0.15)) !important;
@@ -602,28 +602,28 @@
 }
 
 .linkedin {
-  background: linear-gradient(135deg, #ff6b6b, #ff8e8e);
+  background: linear-gradient(135deg, #b50000, #e80000);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
 }
 
 .instagram {
-  background: linear-gradient(135deg, #ff6b6b, #ff8e8e);
+  background: linear-gradient(135deg, #b50000, #e80000);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
 }
 
 .behance {
-  background: linear-gradient(135deg, #ff6b6b, #ff8e8e);
+  background: linear-gradient(135deg, #b50000, #e80000);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
 }
 
 .email {
-  background: linear-gradient(135deg, #ff6b6b, #ff8e8e);
+  background: linear-gradient(135deg, #b50000, #e80000);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;

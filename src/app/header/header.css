@@ -39,7 +39,7 @@
 .logo-icon {
   width: 48px;
   height: 48px;
-  background: linear-gradient(135deg, #ff6b6b, #ff8e8e);
+  background: linear-gradient(135deg, #ff0000, #E80000);
   border-radius: 14px;
   display: flex;
   align-items: center;
@@ -93,7 +93,7 @@
 
 .logo-subtitle {
   font-size: 0.75rem;
-  color: #ff6b6b;
+  color: #ff0000;
   font-weight: 600;
   letter-spacing: 1px;
   margin-top: 2px;
@@ -136,18 +136,18 @@
   background: linear-gradient(135deg, 
     rgba(255, 107, 107, 0.1), 
     rgba(255, 142, 142, 0.15)) !important;
-  color: #ff6b6b !important;
+  color: #ff0000 !important;
   transform: translateY(-2px);
   box-shadow: 0 8px 20px rgba(255, 107, 107, 0.15) !important;
 }
 
 .nav-button:hover mat-icon {
   transform: scale(1.1);
-  color: #ff6b6b;
+  color: #ff0000;
 }
 
 .nav-button.active {
-  background: linear-gradient(135deg, #ff6b6b, #ff8e8e) !important;
+  background: linear-gradient(135deg, #ff0000, #E80000) !important;
   color: white !important;
   box-shadow: 
     0 10px 25px rgba(255, 107, 107, 0.4),
@@ -165,7 +165,7 @@
   transform: translateX(-50%);
   width: 0;
   height: 3px;
-  background: linear-gradient(135deg, #ff6b6b, #ff8e8e);
+  background: linear-gradient(135deg, #ff0000, #E80000);
   border-radius: 3px;
   transition: width 0.3s ease;
 }
@@ -181,7 +181,7 @@
   border-radius: 24px !important;
   font-weight: 600 !important;
   font-size: 0.95rem !important;
-  background: linear-gradient(135deg, #ff6b6b, #ff8e8e) !important;
+  background: linear-gradient(135deg, #ff0000, #E80000) !important;
   color: white !important;
   box-shadow: 
     0 10px 25px rgba(255, 107, 107, 0.4),
@@ -212,7 +212,7 @@
   height: 48px;
   border-radius: 50%;
   background: linear-gradient(135deg, rgba(255, 107, 107, 0.1), rgba(255, 142, 142, 0.15)) !important;
-  color: #ff6b6b !important;
+  color: #ff0000 !important;
   transition: all 0.3s ease !important;
   border: 1px solid rgba(255, 107, 107, 0.2) !important;
 }
@@ -273,7 +273,7 @@
 .mobile-logo-icon {
   width: 56px;
   height: 56px;
-  background: linear-gradient(135deg, #ff6b6b, #ff8e8e);
+  background: linear-gradient(135deg, #ff0000, #E80000);
   border-radius: 16px;
   display: flex;
   align-items: center;
@@ -297,7 +297,7 @@
 
 .mobile-logo-subtitle {
   font-size: 0.85rem;
-  color: #ff6b6b;
+  color: #ff0000;
   font-weight: 600;
   letter-spacing: 1px;
   margin-top: 4px;
@@ -335,12 +335,12 @@
 }
 
 .mobile-menu-item:hover {
-  color: #ff6b6b !important;
+  color: #ff0000 !important;
   transform: translateX(8px);
 }
 
 .mobile-menu-item:hover mat-icon {
-  color: #ff6b6b;
+  color: #ff0000;
   transform: scale(1.1);
 }
 
@@ -376,7 +376,7 @@
   font-weight: 600 !important;
   background: linear-gradient(135deg, rgba(255, 107, 107, 0.1), rgba(255, 142, 142, 0.15)) !important;
   border: 1px solid rgba(255, 107, 107, 0.3) !important;
-  color: #ff6b6b !important;
+  color: #ff0000 !important;
   transition: all 0.3s ease !important;
   margin-bottom: 16px !important;
   display: flex !important;
@@ -386,7 +386,7 @@
 }
 
 .mobile-cta-button:hover {
-  background: linear-gradient(135deg, #ff6b6b, #ff8e8e) !important;
+  background: linear-gradient(135deg, #ff0000, #E80000) !important;
   color: white !important;
   border-color: transparent !important;
   transform: translateY(-2px);
@@ -409,14 +409,14 @@
   align-items: center;
   justify-content: center;
   background: rgba(255, 107, 107, 0.1);
-  color: #ff6b6b;
+  color: #ff0000;
   text-decoration: none;
   transition: all 0.3s ease;
   border: 1px solid rgba(255, 107, 107, 0.2);
 }
 
 .social-mini:hover {
-  background: #ff6b6b;
+  background: #ff0000;
   color: white;
   transform: translateY(-2px);
   box-shadow: 0 6px 15px rgba(255, 107, 107, 0.3);

@@ -1,4 +1,3 @@
-/* Estilos gerais da seção de contato */
 .contato-section {
   position: relative;
   padding: 100px 20px 80px;
@@ -87,7 +86,7 @@
 }
 
 .contato-title .highlight {
-  background: linear-gradient(135deg, #ff6b6b, #ff8e8e);
+  background: linear-gradient(135deg, #FF0000, #E80000);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
@@ -101,7 +100,7 @@
   left: 0;
   width: 100%;
   height: 4px;
-  background: linear-gradient(135deg, #ff6b6b, #ff8e8e);
+  background: linear-gradient(135deg, #FF0000, #E80000);
   border-radius: 2px;
 }
 
@@ -168,7 +167,7 @@
 
 .info-icon {
   font-size: 2.5rem;
-  background: linear-gradient(135deg, #ff6b6b, #ff8e8e);
+  background: linear-gradient(135deg, #FF0000, #E80000);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
@@ -232,7 +231,7 @@
 
 .item-icon {
   font-size: 1.5rem;
-  color: #ff6b6b;
+  color: #FF0000;
   background: rgba(255, 107, 107, 0.1);
   width: 48px;
   height: 48px;
@@ -262,7 +261,7 @@
   margin: 0 0 4px 0;
   font-size: 1rem;
   font-weight: 600;
-  color: #ff6b6b;
+  color: #FF0000;
 }
 
 .copy-hint, .link-hint, .availability {
@@ -321,7 +320,7 @@
   background: linear-gradient(135deg, 
     rgba(255, 107, 107, 0.1), 
     rgba(255, 142, 142, 0.15));
-  color: #ff6b6b;
+  color: #FF0000;
   border-color: rgba(255, 107, 107, 0.2);
 }
 
@@ -339,7 +338,7 @@
 }
 
 .social-button.instagram:hover {
-  background: linear-gradient(135deg, #ff6b6b, #ff8e8e);
+  background: linear-gradient(135deg, #FF0000, #E80000);
   color: white;
   border-color: transparent;
 }
@@ -367,7 +366,7 @@
 .schedule-icon {
   font-size: 3rem;
   margin-bottom: 16px;
-  background: linear-gradient(135deg, #ff6b6b, #ff8e8e);
+  background: linear-gradient(135deg, #ff0000, #E80000);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
@@ -392,7 +391,7 @@
   border-radius: 28px !important;
   font-weight: 600 !important;
   font-size: 1.1rem !important;
-  background: linear-gradient(135deg, #ff6b6b, #ff8e8e) !important;
+  background: linear-gradient(135deg, #ff0000, #E80000) !important;
   color: white !important;
   box-shadow: 
     0 10px 25px rgba(255, 107, 107, 0.4),
@@ -442,7 +441,7 @@
 .cta-icon {
   font-size: 3.5rem;
   margin-bottom: 16px;
-  background: linear-gradient(135deg, #ff6b6b, #ff8e8e);
+  background: linear-gradient(135deg, #ff0000, #E80000);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
@@ -510,7 +509,7 @@
 
 .option-icon {
   font-size: 2rem;
-  color: #ff6b6b;
+  color: #ff0000;
   background: rgba(255, 107, 107, 0.1);
   width: 56px;
   height: 56px;
@@ -544,7 +543,7 @@
 
 .option-arrow {
   font-size: 1.5rem;
-  color: #ff6b6b;
+  color: #ff0000;
   transition: transform 0.3s ease;
   position: relative;
   z-index: 1;
@@ -575,7 +574,7 @@
 }
 
 .clock-icon {
-  color: #ff6b6b;
+  color: #ff0000;
   font-size: 18px !important;
   width: 18px;
   height: 18px;
@@ -595,7 +594,7 @@
 }
 
 .contato-footer a {
-  color: #ff6b6b;
+  color: #ff0000;
   text-decoration: none;
   transition: all 0.3s ease;
   position: relative;
@@ -609,7 +608,7 @@
   left: 4px;
   right: 4px;
   height: 1px;
-  background: linear-gradient(135deg, #ff6b6b, #ff8e8e);
+  background: linear-gradient(135deg, #ff0000, #E80000);
   transform: scaleX(0);
   transition: transform 0.3s ease;
 }
