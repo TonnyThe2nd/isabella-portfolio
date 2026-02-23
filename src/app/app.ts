@@ -4,8 +4,8 @@ import { Contato } from './contato/contato';
 import { Introducao } from './introducao/introducao';
 import { Projeto } from './projeto/projeto';
 import { Sobre } from './sobre/sobre';
-import { Header } from './header/header';
 import { Capa } from './capa/capa';
+import { Header } from './header/header';
 
 @Component({
   selector: 'app-root',

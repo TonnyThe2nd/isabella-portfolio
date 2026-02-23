@@ -83,33 +83,33 @@ export class Projeto implements OnInit {
       id: 1,
       title: 'Projeto: Clínica de Estéticas',
       description: 'Produção e edição de vídeo institucional, com ajustes de legenda, trilha sonora e cortes. O audiovisual foi desenvolvido para transmitir o cuidado com o paciente e o amor pela profissão, mostrando a estética como algo que vai além de um serviço: um propósito.',
-      imageUrl: 'assets/imagens/Screenshot 2025-12-18 093551.jpg',
+      imageUrl: 'assets/imagens/capaProjetos.png',
       technologies: [''],
-      link: 'https://drive.google.com/drive/folders/1UZbnuXvFxQWlSWYF0hDU9V4Wh8mIogfr'
+      link: 'https://drive.google.com/drive/u/1/folders/15csFyvIKXhFePRSTefBn1Cba-vzFeyob'
     },
     {
       id: 2,
       title: 'Projeto: Autoescola',
       description: 'Criação de conteúdos visuais que transformaram o momento da aprovação em algo memorável. Fotos, vídeos e depoimentos captaram a emoção, a felicidade e o sentimento de conquista dos alunos, criando um elo emocional com o público e fortalecendo a credibilidade da marca por meio de um marketing mais humano.',
-      imageUrl: 'assets/imagens/ae01533c-d00c-44bd-8cca-a4559e6c10a6.jpg',
+      imageUrl: 'assets/imagens/capaProjetos.png',
       technologies: [''],
-      link: 'https://drive.google.com/drive/folders/1UZbnuXvFxQWlSWYF0hDU9V4Wh8mIogfr'
+      link: 'https://drive.google.com/drive/folders/12nmoiYB5YtZVi8MLqdYXjHjThdFgNszj'
     },
     {
       id: 3,
       title: 'Projeto: Bia Moraes Acessórios',
       description: 'Criação de campanha com foco no universo feminino, explorando tons quentes e referências florais para transmitir leveza e feminilidade. A produção de fotos e vídeos teve como objetivo evidenciar a autenticidade da coleção por meio dos acessórios, traduzindo a paixão presente em cada peça e gerando identificação com o público.',
-      imageUrl: 'https://images.unsplash.com/photo-1519741497674-611481863552?auto=format&fit=crop&w=800&q=80',
+      imageUrl: 'assets/imagens/capaProjetos.png',
       technologies: [''],
-      link: 'https://drive.google.com/drive/folders/1UZbnuXvFxQWlSWYF0hDU9V4Wh8mIogfr'
+      link: 'https://drive.google.com/drive/u/1/folders/10ZJOV0RdB3rijSSUt-WflQ4-t1WpWDQg'
     },
     {
       id: 4,
       title: 'Cenourão - estágio em marketing',
       description: 'Atuo como estagiária de marketing no Cenourão, apoiando a criação de conteúdos para redes sociais, planejamento de calendário de postagens e campanhas, além da cobertura de eventos e captação de imagens nas lojas, contribuindo com ideias criativas para o fortalecimento da marca.',
-      imageUrl: 'https://images.unsplash.com/photo-1557804506-669a67965ba0?auto=format&fit=crop&w=800&q=80',
+      imageUrl: 'assets/imagens/capaProjetos.png',
       technologies: [''],
-      link: 'https://drive.google.com/drive/folders/1UZbnuXvFxQWlSWYF0hDU9V4Wh8mIogfr'
+      link: 'https://drive.google.com/drive/u/1/folders/10rGvwAuubimXlxm5acHBZWep19vXEl5R'
     }
   ];
 

@@ -1,4 +1,3 @@
-/* Estilos gerais */
 .sobre-section {
   background: linear-gradient(135deg, 
     rgba(255, 255, 255, 0.95) 0%, 
@@ -34,7 +33,6 @@
   z-index: 1;
 }
 
-/* Cabeçalho */
 .sobre-header {
   text-align: center;
   margin-bottom: 80px;
@@ -76,7 +74,6 @@
   line-height: 1.6;
 }
 
-/* Card de perfil */
 .profile-card {
   background: rgba(255, 255, 255, 0.95) !important;
   backdrop-filter: blur(20px);
@@ -133,18 +130,25 @@
 }
 
 .profile-avatar {
-  width: 120px;
-  height: 120px;
-  background: rgba(255, 255, 255, 0.25);
-  backdrop-filter: blur(10px);
+  width: 140px;
+  height: 140px;
   border-radius: 50%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  border: 4px solid rgba(255, 255, 255, 0.4);
+  overflow: hidden;
+  border: 5px solid rgba(255, 255, 255, 0.6);
+  box-shadow: 
+    0 10px 30px rgba(0, 0, 0, 0.25),
+    0 0 0 6px rgba(255, 255, 255, 0.15);
   position: relative;
   z-index: 1;
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+  background: white;
+}
+
+.profile-avatar img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;  
+  border-radius: 50%;
+  display: block;
 }
 
 .avatar-icon {
@@ -259,7 +263,6 @@
   z-index: 1;
 }
 
-/* Seção de Habilidades */
 .skills-section {
   margin-bottom: 100px;
 }
@@ -382,7 +385,6 @@
   100% { transform: translateX(100%); }
 }
 
-/* Seção de Projetos */
 .projects-section {
   padding: 100px 0 80px;
   position: relative;
@@ -428,7 +430,6 @@
   line-height: 1.6;
 }
 
-/* Timeline */
 .timeline-container {
   position: relative;
   display: flex;
@@ -497,7 +498,6 @@
   margin-bottom: 60px;
 }
 
-/* Marcadores da timeline */
 .timeline-marker {
   position: absolute;
   left: 50%;
@@ -598,7 +598,6 @@
   }
 }
 
-/* Cards dos projetos */
 .project-card {
   width: calc(50% - 100px);
   margin: 0;
@@ -819,7 +818,6 @@
   padding: 20px 0;
 }
 
-/* Responsividade */
 @media (max-width: 1100px) {
   .sobre-container {
     padding: 40px 32px;
@@ -982,7 +980,6 @@
   }
 }
 
-/* Ajustes do Angular Material */
 mat-card-content {
   padding: 16px 0 !important;
 }
@@ -1005,7 +1002,6 @@ mat-card-content {
   font-family: inherit;
 }
 
-/* Animações */
 @keyframes fadeInUp {
   from {
     opacity: 0;
