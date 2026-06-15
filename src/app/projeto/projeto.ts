@@ -116,16 +116,16 @@ export class Projeto implements OnInit {
       title: 'ABREU & MANGOLINI - CLÍNICA MULTIDISCIPLINAR',
       description: 'Redefinição da identidade visual e do direcionamento criativo da marca, com foco em fortalecer seu posicionamento através de uma comunicação mais humana, acolhedora e estratégica. Além da construção visual, o projeto envolve a criação de conteúdos para redes sociais que reforçam os valores da marca e aproximam sua comunicação do público.',
       imageUrl: 'assets/imagens/capaProjetos.png',
-      technologies: ['https://drive.google.com/drive/u/0/mobile/folders/188OQrly9VKPRMTzkmzv1eCrRcwPIe6uU'],
-      link: ''
+      technologies: [''],
+      link: 'https://drive.google.com/drive/u/0/mobile/folders/188OQrly9VKPRMTzkmzv1eCrRcwPIe6uU'
     },
     {
       id: 6,
       title: 'ÓTICA ENCANTO',
       description: 'Desenvolvimento da comunicação e posicionamento digital da marca, envolvendo planejamento estratégico, direção criativa, produção de conteúdo, campanhas de marketing e apoio na estruturação de processos internos para fortalecimento da presença digital.',
       imageUrl: 'assets/imagens/capaProjetos.png',
-      technologies: ['https://drive.google.com/drive/u/0/mobile/folders/1TVPp7HEyDD1NtE5J4LQlwJwMMRMHRIOy'],
-      link: ''
+      technologies: [''],
+      link: 'https://drive.google.com/drive/u/0/mobile/folders/1TVPp7HEyDD1NtE5J4LQlwJwMMRMHRIOy'
     }
   ];
 
