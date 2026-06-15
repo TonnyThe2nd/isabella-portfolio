@@ -81,7 +81,7 @@ export class Projeto implements OnInit {
   projects: Project[] = [
     {
       id: 1,
-      title: 'Projeto: Clínica de Estéticas',
+      title: 'PROJETO: CLÍNICA DE ESTÉTICA',
       description: 'Produção e edição de vídeo institucional, com ajustes de legenda, trilha sonora e cortes. O audiovisual foi desenvolvido para transmitir o cuidado com o paciente e o amor pela profissão, mostrando a estética como algo que vai além de um serviço: um propósito.',
       imageUrl: 'assets/imagens/capaProjetos.png',
       technologies: [''],
@@ -89,7 +89,7 @@ export class Projeto implements OnInit {
     },
     {
       id: 2,
-      title: 'Projeto: Autoescola',
+      title: 'PROJETO: AUTOESCOLA',
       description: 'Criação de conteúdos visuais que transformaram o momento da aprovação em algo memorável. Fotos, vídeos e depoimentos captaram a emoção, a felicidade e o sentimento de conquista dos alunos, criando um elo emocional com o público e fortalecendo a credibilidade da marca por meio de um marketing mais humano.',
       imageUrl: 'assets/imagens/capaProjetos.png',
       technologies: [''],
@@ -97,7 +97,7 @@ export class Projeto implements OnInit {
     },
     {
       id: 3,
-      title: 'Projeto: Bia Moraes Acessórios',
+      title: 'PPROJETO: BIA MORAES ACESSÓRIOS',
       description: 'Criação de campanha com foco no universo feminino, explorando tons quentes e referências florais para transmitir leveza e feminilidade. A produção de fotos e vídeos teve como objetivo evidenciar a autenticidade da coleção por meio dos acessórios, traduzindo a paixão presente em cada peça e gerando identificação com o público.',
       imageUrl: 'assets/imagens/capaProjetos.png',
       technologies: [''],
@@ -105,7 +105,7 @@ export class Projeto implements OnInit {
     },
     {
       id: 4,
-      title: 'Cenourão - estágio em marketing',
+      title: 'CENOURÃO - ESTÁGIO EM MARKETING',
       description: 'Atuo como estagiária de marketing no Cenourão, apoiando a criação de conteúdos para redes sociais, planejamento de calendário de postagens e campanhas, além da cobertura de eventos e captação de imagens nas lojas, contribuindo com ideias criativas para o fortalecimento da marca.',
       imageUrl: 'assets/imagens/capaProjetos.png',
       technologies: [''],
@@ -128,7 +128,6 @@ export class Projeto implements OnInit {
       link: 'https://drive.google.com/drive/u/0/mobile/folders/1TVPp7HEyDD1NtE5J4LQlwJwMMRMHRIOy'
     }
   ];
-
 
   visibleProjects: Project[] = [];
   activeProject: number | null = null;
