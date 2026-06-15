@@ -1,0 +1,1108 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Documentação Técnica — ControleAcessoCancelas</title>
+<style>
+  :root {
+    --bg: #0f1117;
+    --surface: #181c27;
+    --surface2: #1e2333;
+    --border: #2a3048;
+    --accent: #4f8ef7;
+    --accent2: #38d9a9;
+    --accent3: #f7c948;
+    --danger: #f06060;
+    --text: #dde3f0;
+    --muted: #7a8299;
+    --code-bg: #141824;
+    --font-mono: 'Cascadia Code', 'Fira Code', 'Consolas', monospace;
+    --font-sans: 'Segoe UI', system-ui, sans-serif;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: var(--font-sans);
+    font-size: 15px;
+    line-height: 1.7;
+    display: flex;
+  }
+
+  /* SIDEBAR */
+  nav {
+    width: 270px;
+    min-width: 270px;
+    background: var(--surface);
+    border-right: 1px solid var(--border);
+    height: 100vh;
+    position: sticky;
+    top: 0;
+    overflow-y: auto;
+    padding: 28px 0 40px;
+  }
+
+  .nav-logo {
+    padding: 0 22px 24px;
+    border-bottom: 1px solid var(--border);
+    margin-bottom: 12px;
+  }
+  .nav-logo .logo-badge {
+    display: inline-block;
+    background: var(--accent);
+    color: #fff;
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: .08em;
+    text-transform: uppercase;
+    padding: 2px 7px;
+    border-radius: 3px;
+    margin-bottom: 6px;
+  }
+  .nav-logo h1 { font-size: 14px; color: var(--text); font-weight: 600; line-height: 1.3; }
+
+  nav a {
+    display: block;
+    padding: 6px 22px;
+    color: var(--muted);
+    text-decoration: none;
+    font-size: 13px;
+    border-left: 2px solid transparent;
+    transition: color .15s, border-color .15s;
+  }
+  nav a:hover { color: var(--text); }
+  nav a.active { color: var(--accent); border-left-color: var(--accent); background: rgba(79,142,247,.06); }
+  nav .nav-section {
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: .1em;
+    text-transform: uppercase;
+    color: var(--muted);
+    padding: 18px 22px 4px;
+  }
+  nav a.sub { padding-left: 34px; font-size: 12.5px; }
+
+  /* MAIN */
+  main {
+    flex: 1;
+    max-width: 980px;
+    padding: 48px 60px 80px;
+    overflow-y: auto;
+  }
+
+  /* HEADINGS */
+  h1.page-title {
+    font-size: 30px;
+    font-weight: 700;
+    color: #fff;
+    margin-bottom: 8px;
+    line-height: 1.2;
+  }
+  .page-subtitle { color: var(--muted); font-size: 15px; margin-bottom: 40px; }
+
+  h2.section-title {
+    font-size: 20px;
+    font-weight: 700;
+    color: #fff;
+    margin: 52px 0 18px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid var(--border);
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+  h2.section-title .icon { font-size: 18px; }
+
+  h3 {
+    font-size: 15px;
+    font-weight: 700;
+    color: var(--accent);
+    margin: 28px 0 10px;
+    text-transform: uppercase;
+    letter-spacing: .05em;
+    font-size: 12px;
+  }
+
+  h4 { font-size: 14px; font-weight: 600; color: var(--text); margin: 18px 0 6px; }
+
+  p { margin-bottom: 12px; color: var(--text); }
+  p:last-child { margin-bottom: 0; }
+
+  /* CALLOUT / BADGE */
+  .badge {
+    display: inline-block;
+    padding: 2px 8px;
+    border-radius: 4px;
+    font-size: 11px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: .05em;
+  }
+  .badge-blue { background: rgba(79,142,247,.15); color: var(--accent); }
+  .badge-green { background: rgba(56,217,169,.15); color: var(--accent2); }
+  .badge-yellow { background: rgba(247,201,72,.15); color: var(--accent3); }
+  .badge-red { background: rgba(240,96,96,.15); color: var(--danger); }
+
+  /* CARDS */
+  .cards { display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 16px; margin: 20px 0; }
+  .card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 18px;
+  }
+  .card .card-icon { font-size: 22px; margin-bottom: 8px; }
+  .card h4 { margin: 0 0 6px; font-size: 13px; color: var(--text); }
+  .card p { font-size: 12px; color: var(--muted); margin: 0; }
+  .card-accent-blue { border-top: 3px solid var(--accent); }
+  .card-accent-green { border-top: 3px solid var(--accent2); }
+  .card-accent-yellow { border-top: 3px solid var(--accent3); }
+  .card-accent-red { border-top: 3px solid var(--danger); }
+
+  /* CODE */
+  pre {
+    background: var(--code-bg);
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    padding: 16px 20px;
+    overflow-x: auto;
+    margin: 14px 0;
+    font-size: 12.5px;
+    font-family: var(--font-mono);
+    line-height: 1.6;
+    color: #c9d1e3;
+  }
+  code {
+    background: var(--code-bg);
+    border: 1px solid var(--border);
+    padding: 1px 6px;
+    border-radius: 3px;
+    font-size: 12.5px;
+    font-family: var(--font-mono);
+    color: #c9d1e3;
+  }
+  pre code { background: none; border: none; padding: 0; }
+  .kw { color: #7ca9f7; }
+  .ty { color: #56d6ae; }
+  .str { color: #f4bf75; }
+  .cm { color: #5d6d8a; font-style: italic; }
+  .num { color: #f79c48; }
+
+  /* TABLE */
+  table { width: 100%; border-collapse: collapse; margin: 16px 0; font-size: 13px; }
+  th {
+    background: var(--surface2);
+    color: var(--muted);
+    font-size: 11px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: .06em;
+    padding: 9px 14px;
+    text-align: left;
+    border-bottom: 1px solid var(--border);
+  }
+  td { padding: 9px 14px; border-bottom: 1px solid var(--border); color: var(--text); vertical-align: top; }
+  tr:last-child td { border-bottom: none; }
+  tr:hover td { background: rgba(255,255,255,.02); }
+
+  /* FLOW DIAGRAM (ASCII-art style) */
+  .flow-box {
+    background: var(--code-bg);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 24px 28px;
+    font-family: var(--font-mono);
+    font-size: 12px;
+    line-height: 2;
+    color: var(--text);
+    margin: 18px 0;
+    overflow-x: auto;
+    white-space: pre;
+  }
+  .f-accent { color: var(--accent); }
+  .f-green { color: var(--accent2); }
+  .f-yellow { color: var(--accent3); }
+  .f-red { color: var(--danger); }
+  .f-muted { color: var(--muted); }
+
+  /* ALERT */
+  .alert {
+    padding: 12px 16px;
+    border-radius: 6px;
+    margin: 14px 0;
+    font-size: 13.5px;
+    border-left: 3px solid;
+  }
+  .alert-info { background: rgba(79,142,247,.08); border-color: var(--accent); }
+  .alert-warn { background: rgba(247,201,72,.08); border-color: var(--accent3); }
+  .alert-danger { background: rgba(240,96,96,.08); border-color: var(--danger); }
+  .alert-success { background: rgba(56,217,169,.08); border-color: var(--accent2); }
+
+  /* SECTION ANCHOR */
+  section { scroll-margin-top: 20px; }
+
+  /* STATE TABLE */
+  .state-chip {
+    display: inline-block;
+    width: 10px; height: 10px;
+    border-radius: 50%;
+    margin-right: 6px;
+    vertical-align: middle;
+  }
+</style>
+</head>
+<body>
+
+<!-- SIDEBAR -->
+<nav>
+  <div class="nav-logo">
+    <div class="logo-badge">Docs</div>
+    <h1>ControleAcesso<br>Cancelas</h1>
+  </div>
+
+  <div class="nav-section">Visão Geral</div>
+  <a href="#overview">Introdução</a>
+  <a href="#arquitetura">Arquitetura do Sistema</a>
+  <a href="#projetos">Projetos / Módulos</a>
+
+  <div class="nav-section">Fluxo Principal</div>
+  <a href="#fluxo-saida">Fluxo de Saída de Alunos</a>
+  <a href="#estados-cancela">Estados da Cancela</a>
+  <a href="#sessao">Ciclo de Sessão</a>
+
+  <div class="nav-section">Módulos</div>
+  <a href="#bll">BLL — Regras de Negócio</a>
+  <a href="#dal">DAL — Acesso a Dados</a>
+  <a href="#webservice">WebService (WCF)</a>
+  <a href="#ui-tv">UI.TV — Painel de Cancelas</a>
+  <a href="#ui-admin">UI.CatracaAdministrador</a>
+  <a href="#ui-gestor">UI.GestorResponsaveis</a>
+  <a href="#services">Windows Services</a>
+  <a href="#pubsub">Infra — Redis PubSub</a>
+
+  <div class="nav-section">Dados</div>
+  <a href="#banco-dados">Bancos de Dados</a>
+  <a href="#entidades">Entidades Principais</a>
+  <a href="#sql-queries">Consultas Críticas</a>
+
+  <div class="nav-section">Integração</div>
+  <a href="#oracle">Integração Oracle (BHS)</a>
+
+  <div class="nav-section">Configuração</div>
+  <a href="#config">App.config por Módulo</a>
+  <a href="#bloco-cursos">Bloco × Filtro de Cursos</a>
+  <a href="#ini-files">Arquivos INI</a>
+</nav>
+
+<!-- MAIN -->
+<main>
+
+  <!-- HEADER -->
+  <h1 class="page-title">ControleAcessoCancelas</h1>
+  <p class="page-subtitle">Documentação técnica completa — arquitetura, fluxos, entidades, integração e configuração</p>
+
+  <!-- OVERVIEW -->
+  <section id="overview">
+    <h2 class="section-title"><span class="icon">📋</span> Introdução</h2>
+    <p>O <strong>ControleAcessoCancelas</strong> é um sistema Windows (.NET Framework 4.6.1 + WPF) para gerenciamento do controle de saída de alunos de uma instituição de ensino. Ele integra leitores RFID de cancelas e catracas físicas, um banco de dados SQL Server centralizado, bases Firebird distribuídas por blocos (catracas), um banco Oracle legado (sistema BHS), e um servidor Redis para pub/sub em tempo real.</p>
+
+    <div class="cards">
+      <div class="card card-accent-blue">
+        <div class="card-icon">🏫</div>
+        <h4>Domínio</h4>
+        <p>Controle de saída de alunos por responsáveis autorizados via RFID em cancelas</p>
+      </div>
+      <div class="card card-accent-green">
+        <div class="card-icon">⚙️</div>
+        <h4>Stack</h4>
+        <p>.NET 4.6.1 / WPF / WCF / Dapper / SQL Server / Firebird / Oracle / Redis</p>
+      </div>
+      <div class="card card-accent-yellow">
+        <div class="card-icon">📡</div>
+        <h4>Hardware</h4>
+        <p>Leitores RFID (cancelas de carro + totem pedestre), catracas físicas por bloco</p>
+      </div>
+      <div class="card card-accent-red">
+        <div class="card-icon">🖥️</div>
+        <h4>Interfaces</h4>
+        <p>Painel TV de saída, admin de catracas, gestor de responsáveis, web service REST-like</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ARQUITETURA -->
+  <section id="arquitetura">
+    <h2 class="section-title"><span class="icon">🏗️</span> Arquitetura do Sistema</h2>
+
+    <p>O sistema segue uma arquitetura em camadas clássica (UI → BLL → DAL → DB) com múltiplos processos independentes (Windows Services) responsáveis por capturar eventos de hardware e sincronizar bases de dados distintas.</p>
+
+<div class="flow-box"><span class="f-green">┌─────────────────────────────────────────────────────────────────────────────┐</span>
+<span class="f-green">│                        CAMADAS DO SISTEMA                                   │</span>
+<span class="f-green">└─────────────────────────────────────────────────────────────────────────────┘</span>
+
+<span class="f-accent">  ┌─────────────────────────────────────────────┐</span>
+<span class="f-accent">  │               INTERFACE (UI)                 │</span>
+<span class="f-accent">  │  ControleAcessoCancelas  (Painel TV/Cancelas) │</span>
+<span class="f-accent">  │  UI.CatracaAdministrador (Admin de Catracas)  │</span>
+<span class="f-accent">  │  UI.GestorResponsaveis   (Gestor Responsáveis)│</span>
+<span class="f-accent">  └────────────────────┬────────────────────────┘</span>
+                       │ REST / WCF
+  <span class="f-yellow">┌────────────────────▼────────────────────────┐</span>
+  <span class="f-yellow">│             WebService (WCF REST)            │</span>
+  <span class="f-yellow">│  Cancela.svc · Aluno.svc · Saida.svc        │</span>
+  <span class="f-yellow">│  Sessao.svc · Usuario.svc                   │</span>
+  <span class="f-yellow">└────────────────────┬────────────────────────┘</span>
+                       │
+  <span class="f-green">┌────────────────────▼────────────────────────┐</span>
+  <span class="f-green">│         BLL — Business Logic Layer           │</span>
+  <span class="f-green">│  CancelaBll · ResponsavelBll · SessaoBll     │</span>
+  <span class="f-green">│  AlunoBll · FrequenciaBll · GrupoAcesso      │</span>
+  <span class="f-green">└────────────────────┬────────────────────────┘</span>
+                       │
+  <span class="f-muted">┌────────────────────▼────────────────────────┐</span>
+  <span class="f-muted">│          DAL — Data Access Layer             │</span>
+  <span class="f-muted">│  CancelaDal · ResponsavelAlunoDal · AlunoDal │</span>
+  <span class="f-muted">│  SessaoDal · FrequenciaSqlDal               │</span>
+  <span class="f-muted">└──────────────┬──────────────────────────────┘</span>
+               │
+<span class="f-red">           SQL Server (cancelas)    Oracle BHS (leitura)    Redis (PubSub)</span>
+
+<span class="f-accent">──────────── PROCESSOS EM BACKGROUND (Windows Services) ───────────────</span>
+  <span class="f-yellow">MonitoraCancelas</span>  → Lê Oracle BHS → Insere saída em SQL Server
+  <span class="f-yellow">MonitoraAlunos</span>    → Sincroniza alunos entre bases
+  <span class="f-yellow">ImagensAlunos</span>     → Exporta fotos SQL Server → pasta de arquivos</div>
+  </section>
+
+  <!-- PROJETOS -->
+  <section id="projetos">
+    <h2 class="section-title"><span class="icon">📦</span> Projetos / Módulos</h2>
+    <table>
+      <thead>
+        <tr><th>Projeto</th><th>Tipo</th><th>Responsabilidade</th></tr>
+      </thead>
+      <tbody>
+        <tr><td><code>BLL</code></td><td><span class="badge badge-blue">Library</span></td><td>Toda a lógica de negócio. Orquestração dos fluxos.</td></tr>
+        <tr><td><code>DAL</code></td><td><span class="badge badge-blue">Library</span></td><td>Acesso ao banco SQL Server (Dapper). Queries, repositórios.</td></tr>
+        <tr><td><code>WebService</code></td><td><span class="badge badge-green">WCF Service</span></td><td>API REST-like via WCF exposta para os clientes WPF e sistemas externos.</td></tr>
+        <tr><td><code>ControleAcessoCancelas</code></td><td><span class="badge badge-yellow">WPF App</span></td><td>Painel de TV exibido nas cancelas. Mostra alunos aguardando e já saídos.</td></tr>
+        <tr><td><code>ControleAcessoEscolas.UI.CatracaAdministrador</code></td><td><span class="badge badge-yellow">WPF App</span></td><td>Administração de catracas, grupos de acesso, cadastros físicos.</td></tr>
+        <tr><td><code>UI.GestorResponsaveis</code></td><td><span class="badge badge-yellow">WPF App</span></td><td>Cadastro e gestão de responsáveis, associação com alunos, impressão de relatórios.</td></tr>
+        <tr><td><code>UI</code> (MVVM + SISEG)</td><td><span class="badge badge-yellow">WPF App</span></td><td>Interface principal MVVM com dashboard, gestão de alunos/funcionários, frequência.</td></tr>
+        <tr><td><code>Services.MonitoraCancelas</code></td><td><span class="badge badge-red">Win Service</span></td><td>Monitora o Oracle BHS (leitores de cancela). Captura RFID e insere no SQL Server.</td></tr>
+        <tr><td><code>Services.MonitoraAlunos</code></td><td><span class="badge badge-red">Win Service</span></td><td>Sincroniza cadastro de alunos do SQL Server para as bases de catracas por bloco.</td></tr>
+        <tr><td><code>Services.ImagensAlunos</code></td><td><span class="badge badge-red">Win Service</span></td><td>Exporta fotos dos alunos do SQL Server para pasta local (usada pelas catracas).</td></tr>
+        <tr><td><code>SisSeg.Infra.PubSub</code></td><td><span class="badge badge-blue">Library</span></td><td>Abstração sobre Redis (StackExchange.Redis) para pub/sub de eventos em tempo real.</td></tr>
+      </tbody>
+    </table>
+  </section>
+
+  <!-- FLUXO DE SAÍDA -->
+  <section id="fluxo-saida">
+    <h2 class="section-title"><span class="icon">🚦</span> Fluxo de Saída de Alunos</h2>
+    <p>Este é o fluxo central do sistema. Descreve o ciclo de vida completo de uma saída de aluno, desde a leitura do cartão do responsável na cancela até a finalização do registro.</p>
+
+<div class="flow-box">
+<span class="f-accent">╔══════════════════════════════════════════════════════════════════╗</span>
+<span class="f-accent">║              FLUXO COMPLETO — SAÍDA DE ALUNO                    ║</span>
+<span class="f-accent">╚══════════════════════════════════════════════════════════════════╝</span>
+
+ <span class="f-yellow">① LEITURA DO RFID NA CANCELA</span>
+    Responsável aproxima cartão RFID na cancela (carro) ou no totem (pedestre)
+    Hardware registra passagem na view Oracle: BHSPROD.V_LOGACE_BARAO
+          <span class="f-muted">campo idcatraca: 201 = cancela carro | 202 = totem pedestre</span>
+
+ <span class="f-yellow">② SERVIÇO MonitoraCancelas (tick a cada ~N segundos)</span>
+    Lê último id_frequencia do Oracle
+    Compara com LastFrequencia salvo no .INI local
+    Para cada nova frequência:
+      ├─ Identifica CartaoRFID
+      ├─ Busca alunos vinculados ao responsável (GetAlunosByCartaoRfid)
+      ├─ Verifica se responsável já tem registro na sessão atual (HasResponsavel)
+      │     └─ Evita duplicatas na mesma sessão
+      ├─ Para cada aluno do responsável:
+      │     ├─ Cria registro Cancela com flags: Saida=true, Catraca=false, Finalizado=false
+      │     └─ CancelaBll.CadastrarCancela() → INSERT em cancelas.Cancela (SQL Server)
+      └─ Atualiza LastFrequencia no .INI
+
+ <span class="f-yellow">③ PAINEL TV (ControleAcessoCancelas) — refresh a cada N segundos</span>
+    LoadAlunosParaSair():
+      ├─ GetAlunosAguardandoSaida(agora, idSessao) → lista "Para Sair"
+      ├─ Filtra por: Curso, Série, Turma, Horário (manhã/bilíngue/tarde)
+      └─ Exibe nome do aluno na tela (coluna esquerda: aguardando saída)
+    
+    LoadAlunosJaSairam():
+      ├─ GetAlunosPassaramCatraca(dataHoje, idSessao) → lista "Já Saíram"
+      └─ Exibe alunos que passaram pela catraca (coluna direita)
+
+ <span class="f-yellow">④ PASSAGEM DO ALUNO NA CATRACA</span>
+    Aluno passa pela catraca física (leitora de digital ou cartão)
+    Serviço MonitoraCatracas detecta passagem:
+      ├─ Identifica aluno por RG
+      ├─ Busca cancela pendente no SQL Server
+      └─ PUT /catraca/aluno/{token}/{idAluno} → UpdateCatracaAluno()
+            └─ CancelaBll.InsertAlunoPassouCatraca()
+                  └─ UPDATE Cancela: Catraca=true, Saida=false
+
+ <span class="f-yellow">⑤ FINALIZAÇÃO AUTOMÁTICA (a cada ~20 segundos)</span>
+    CancelaBll.DeleteAlunoCatraca()
+      └─ UpdateCancelaFinalizados() → marca Finalizado=true para registros antigos
+
+ <span class="f-green">CASO ESPECIAL: Saída Manual (operador)</span>
+    InserirSaidaManualAluno(idAluno, idSessao)
+      └─ UPDATE Cancela: Finalizado=true, DataHoraSaidaManual=now
+
+ <span class="f-green">CASO ESPECIAL: Lista de Espera (Aguardando)</span>
+    Aluno com horário diferente → InsertAguardando()
+      └─ UPDATE Cancela: Aguardando=true
+    Quando chega o horário → PassarDeAguardandoPara(estado)
+      └─ Estado = ParaSair (Saida=true) ou Finalizado
+</div>
+
+    <div class="alert alert-info">
+      <strong>Sessão:</strong> Todos os registros de cancela são vinculados a uma <code>Sessao</code> aberta. Sem sessão ativa, o serviço <code>MonitoraCancelas</code> ignora as passagens. A sessão é aberta/fechada manualmente pela interface administrativa.
+    </div>
+  </section>
+
+  <!-- ESTADOS DA CANCELA -->
+  <section id="estados-cancela">
+    <h2 class="section-title"><span class="icon">🔄</span> Estados da Cancela (Máquina de Estados)</h2>
+    <p>Cada registro na tabela <code>cancelas.Cancela</code> representa um aluno em um determinado estado dentro do processo de saída. As flags <code>Saida</code>, <code>Catraca</code>, <code>Finalizado</code> e <code>Aguardando</code> são mutuamente exclusivas por convenção.</p>
+
+    <table>
+      <thead>
+        <tr><th>Estado</th><th>Saida</th><th>Catraca</th><th>Finalizado</th><th>Aguardando</th><th>Significado</th></tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><span class="state-chip" style="background:var(--accent)"></span><strong>Na lista de saída</strong></td>
+          <td><span class="badge badge-green">true</span></td>
+          <td>false</td><td>false</td><td>false</td>
+          <td>Responsável passou na cancela. Aluno aguardando na tela.</td>
+        </tr>
+        <tr>
+          <td><span class="state-chip" style="background:var(--accent3)"></span><strong>Aguardando</strong></td>
+          <td>false</td><td>false</td><td>false</td>
+          <td><span class="badge badge-yellow">true</span></td>
+          <td>Aluno em horário diferente — na lista de espera.</td>
+        </tr>
+        <tr>
+          <td><span class="state-chip" style="background:var(--accent2)"></span><strong>Passou na catraca</strong></td>
+          <td>false</td>
+          <td><span class="badge badge-green">true</span></td>
+          <td>false</td><td>false</td>
+          <td>Aluno passou fisicamente pela catraca. Coluna direita do painel.</td>
+        </tr>
+        <tr>
+          <td><span class="state-chip" style="background:var(--muted)"></span><strong>Finalizado</strong></td>
+          <td>false</td><td>false</td>
+          <td><span class="badge badge-blue">true</span></td>
+          <td>false</td>
+          <td>Processo concluído. Saída manual ou finalização automática.</td>
+        </tr>
+      </tbody>
+    </table>
+
+<div class="flow-box">
+<span class="f-accent">TRANSIÇÕES DE ESTADO:</span>
+
+  <span class="f-yellow">[INICIAL: Responsável passa na cancela]</span>
+           │
+           ▼
+  <span class="f-accent">Saida=true</span>  ──────────────────────────────────────────────────→  <span class="f-muted">Aguardando=true</span>
+     │  (na lista)                                     (horário diferente)
+     │                                                        │
+     ▼ (aluno passa na catraca)                               ▼ (horário chega)
+  <span class="f-green">Catraca=true</span>                                        <span class="f-accent">Saida=true</span> ou <span class="f-muted">Finalizado=true</span>
+     │
+     ▼ (ciclo automático ~20s)
+  <span class="f-muted">Finalizado=true</span>  ←────── Saída manual pelo operador
+</div>
+  </section>
+
+  <!-- SESSÃO -->
+  <section id="sessao">
+    <h2 class="section-title"><span class="icon">🔑</span> Ciclo de Sessão</h2>
+    <p>A <strong>Sessão</strong> é o elemento central de controle do dia letivo. Todos os registros de cancela, frequência e autorização são vinculados a uma sessão ativa.</p>
+    <table>
+      <thead><tr><th>Operação</th><th>Método BLL</th><th>Efeito</th></tr></thead>
+      <tbody>
+        <tr><td>Abrir sessão</td><td><code>SessaoBll.AbrirSessao()</code></td><td>Insere registro na tabela <code>Sessao</code> com <code>DataHoraAbertura=now</code></td></tr>
+        <tr><td>Obter sessão aberta</td><td><code>SessaoBll.GetSessaoAberta()</code></td><td>Retorna sessão sem <code>DataHoraFechamento</code>. Retorna null se inexistente.</td></tr>
+        <tr><td>Fechar sessão</td><td><code>SessaoBll.FecharSessao()</code></td><td>Seta <code>DataHoraFechamento=now</code> na sessão em aberto</td></tr>
+      </tbody>
+    </table>
+    <div class="alert alert-warn">
+      <strong>Atenção:</strong> Sem sessão aberta, o serviço <code>MonitoraCancelas</code> interrompe o processamento e registra log de aviso. A interface TV também não exibe dados enquanto não há sessão ativa.
+    </div>
+  </section>
+
+  <!-- BLL -->
+  <section id="bll">
+    <h2 class="section-title"><span class="icon">⚙️</span> BLL — Camada de Regras de Negócio</h2>
+
+    <h3>Classes principais</h3>
+    <table>
+      <thead><tr><th>Classe</th><th>Responsabilidade</th><th>Dependências (injeção)</th></tr></thead>
+      <tbody>
+        <tr><td><code>CancelaBll</code></td><td>Gerencia o ciclo de vida dos registros de saída. Transições de estado.</td><td><code>CancelaDal</code>, <code>ResponsavelAlunoBll</code>, <code>SessaoBll</code></td></tr>
+        <tr><td><code>ResponsavelBll</code></td><td>CRUD de responsáveis, importação em massa, vinculação com alunos.</td><td><code>ResponsavelDal</code>, <code>ResponsavelAlunoDal</code></td></tr>
+        <tr><td><code>ResponsavelAlunoBll</code></td><td>Vinculo responsável-aluno. Busca por RFID, autorização, lista de espera.</td><td><code>ResponsavelAlunoDal</code></td></tr>
+        <tr><td><code>SessaoBll</code></td><td>Abrir/fechar/obter sessão de controle do dia.</td><td><code>SessaoDal</code></td></tr>
+        <tr><td><code>AlunoBll</code></td><td>CRUD de alunos, busca por ano letivo, dados completos com foto.</td><td><code>AlunoDal</code></td></tr>
+        <tr><td><code>FrequenciaSql</code></td><td>Registro de entradas/saídas no SQL Server (frequência do aluno no dia).</td><td><code>FrequenciaSqlDal</code></td></tr>
+        <tr><td><code>Fisico</code></td><td>Sincronização do cadastro do aluno para as bases Firebird por bloco.</td><td><code>Repositorio</code> (Firebird)</td></tr>
+        <tr><td><code>GrupoAcesso</code></td><td>Gerencia grupos de acesso nas 3 bases Firebird simultaneamente.</td><td><code>Repositorio</code> × 3</td></tr>
+        <tr><td><code>AutorizacaoBll</code></td><td>Autorizações temporárias (exceções de saída).</td><td><code>AutorizacaoDal</code></td></tr>
+        <tr><td><code>ExcecaoBll</code></td><td>Exceções de acesso (ex: aluno liberado para sair sozinho).</td><td><code>ExcecaoDal</code></td></tr>
+        <tr><td><code>FuncionarioBll</code></td><td>Cadastro e pesquisa de funcionários.</td><td><code>FuncionarioDal</code></td></tr>
+      </tbody>
+    </table>
+
+    <h3>CancelaBll — Métodos detalhados</h3>
+    <table>
+      <thead><tr><th>Método</th><th>O que faz</th></tr></thead>
+      <tbody>
+        <tr><td><code>InsertSaidaAluno(idAluno, idResponsavel, idRfid)</code></td><td>Cria registro de saída. Requer sessão aberta. Flags: Saida=true, outros=false.</td></tr>
+        <tr><td><code>InsertAlunoPassouCatraca(idAluno, where)</code></td><td>Marca Catraca=true, Saida=false. Chamado via WebService quando aluno passa pela catraca.</td></tr>
+        <tr><td><code>InsertAguardando(idAluno, where)</code></td><td>Move aluno para lista de espera (Aguardando=true).</td></tr>
+        <tr><td><code>PassarDeAguardandoPara(idAluno, estado)</code></td><td>Transição da lista de espera para ParaSair ou Finalizado.</td></tr>
+        <tr><td><code>InserirSaidaManualAluno(idAluno, idSessao)</code></td><td>Saída manual pelo operador. Seta Finalizado=true, DataHoraSaidaManual=now.</td></tr>
+        <tr><td><code>DeleteAlunoCatraca()</code></td><td>Limpeza periódica (~20s). Marca como Finalizado registros que já passaram na catraca.</td></tr>
+        <tr><td><code>HasResponsavel(idSessao, idResponsavel)</code></td><td>Evita registrar o mesmo responsável duas vezes na mesma sessão.</td></tr>
+        <tr><td><code>PegarPassagensNaCancela(idAluno, data)</code></td><td>Histórico de passagens de um aluno numa data. Retorna nome do responsável, vínculo e horários.</td></tr>
+      </tbody>
+    </table>
+
+    <h3>Infra PubSub (Redis)</h3>
+    <p>O <code>CancelaBll</code> mantém uma instância lazy de <code>SisSeg.Infra.PubSub.RedisStore</code> via <code>StackExchange.Redis</code>. Utilizada para notificação em tempo real de eventos de cancela entre processos (ex: novo aluno na lista de saída).</p>
+<pre><code><span class="kw">private</span> SisSeg.Infra.PubSub.RedisStore _client;
+<span class="kw">public</span> SisSeg.Infra.PubSub.RedisStore ClientPubSub 
+    => _client ?? (_client = <span class="kw">new</span> SisSeg.Infra.PubSub.RedisStore());</code></pre>
+  </section>
+
+  <!-- DAL -->
+  <section id="dal">
+    <h2 class="section-title"><span class="icon">🗄️</span> DAL — Camada de Acesso a Dados</h2>
+    <p>O DAL usa <strong>Dapper</strong> para mapeamento SQL → objetos. A abstração de conexão é feita via interface <code>ILiceuDataBase</code> (Unit of Work), permitindo injeção de dependência.</p>
+
+    <h3>Padrão Repository</h3>
+<pre><code><span class="cm">// Interface principal de conexão</span>
+<span class="kw">public interface</span> <span class="ty">ILiceuDataBase</span> {
+    IDbConnection GetConnection();
+}
+
+<span class="cm">// DAL típica</span>
+<span class="kw">public class</span> <span class="ty">CancelaDal</span> {
+    <span class="kw">private readonly</span> <span class="ty">ILiceuDataBase</span> _uow;
+    <span class="kw">public</span> CancelaDal(<span class="ty">ILiceuDataBase</span> uow) => _uow = uow;
+    
+    <span class="kw">public</span> Cancela InsertCancela(<span class="ty">Cancela</span> cancela) {
+        <span class="kw">var</span> sql = <span class="str">"INSERT INTO cancelas.Cancela(...) VALUES (...)"</span>;
+        _uow.GetConnection().Execute(sql, cancela);
+        <span class="cm">// retorna o registro inserido</span>
+    }
+}</code></pre>
+
+    <h3>DALs e suas tabelas</h3>
+    <table>
+      <thead><tr><th>DAL</th><th>Tabela(s) SQL Server</th><th>Banco Firebird</th></tr></thead>
+      <tbody>
+        <tr><td><code>CancelaDal</code></td><td><code>cancelas.Cancela</code></td><td>—</td></tr>
+        <tr><td><code>ResponsavelDal</code></td><td><code>cancelas.Responsavel</code></td><td>—</td></tr>
+        <tr><td><code>ResponsavelAlunoDal</code></td><td><code>cancelas.ResponsavelAluno</code></td><td>—</td></tr>
+        <tr><td><code>AlunoDal</code></td><td><code>cancelas.Aluno</code> (+ ERP externo)</td><td>—</td></tr>
+        <tr><td><code>SessaoDal</code></td><td><code>cancelas.Sessao</code></td><td>—</td></tr>
+        <tr><td><code>FrequenciaSqlDal</code></td><td><code>cancelas.Frequencia</code></td><td>—</td></tr>
+        <tr><td><code>ExcecaoDal</code></td><td><code>cancelas.Excecao</code></td><td>—</td></tr>
+        <tr><td><code>AutorizacaoDal</code></td><td><code>cancelas.Autorizacao</code></td><td>—</td></tr>
+        <tr><td><code>Repositorio (Fisico)</code></td><td>—</td><td><code>FISICO</code>, <code>GRUPO_ACESSO</code>, <code>FREQUENCIA</code></td></tr>
+      </tbody>
+    </table>
+
+    <h3>BaseCrudDAO — Firebird</h3>
+    <p>Para as bases Firebird (catracas físicas), o acesso é feito via <code>BaseCrudDao&lt;T&gt;</code> com suporte a 3 instâncias de banco:</p>
+<pre><code><span class="kw">public enum</span> BaseDados { Bloco1, Bloco2, Recepcao }
+
+<span class="cm">// Uso:</span>
+<span class="kw">var</span> repositorio = <span class="kw">new</span> Repositorio(BaseCrudDao&lt;object&gt;.BaseDados.Bloco1);
+repositorio.Fisico.Get(<span class="str">"select * from FISICO where ..."</span>);</code></pre>
+  </section>
+
+  <!-- WEBSERVICE -->
+  <section id="webservice">
+    <h2 class="section-title"><span class="icon">🌐</span> WebService — API WCF REST</h2>
+    <p>Expõe endpoints REST-like via WCF (<code>WebHttpBinding</code>). Consumido pelos clientes WPF via <code>RestClient.cs</code> e pelo <code>wsAddress.cs</code> que lê URLs de um arquivo INI (<code>WebServices.ini</code>).</p>
+
+    <h3>Cancela.svc — Endpoints principais</h3>
+    <table>
+      <thead><tr><th>Verbo</th><th>URL</th><th>Método</th><th>Descrição</th></tr></thead>
+      <tbody>
+        <tr><td><span class="badge badge-blue">PUT</span></td><td><code>/catraca/aluno/{token}/{idAluno}</code></td><td><code>UpdateCatracaAluno</code></td><td>Registra que o aluno passou na catraca.</td></tr>
+        <tr><td><span class="badge badge-green">POST</span></td><td><code>/excecao/{token}</code></td><td><code>CadastrarExcecao</code></td><td>Cadastra exceção de acesso.</td></tr>
+        <tr><td><span class="badge badge-yellow">PUT</span></td><td><code>/excecao/{token}</code></td><td><code>AtualizarExcecao</code></td><td>Atualiza exceção.</td></tr>
+        <tr><td><span class="badge badge-red">DELETE</span></td><td><code>/excecao/{idExcecao}/{token}</code></td><td><code>DeletarExcecao</code></td><td>Remove exceção.</td></tr>
+        <tr><td><span class="badge badge-green">POST</span></td><td><code>/responsavel/importar/todos/{token}</code></td><td><code>ImportarTodosResponsaveis</code></td><td>Importação em massa do ERP.</td></tr>
+        <tr><td><span class="badge badge-green">POST</span></td><td><code>/responsavel/{token}</code></td><td><code>CadastrarResponsavel</code></td><td>Cria responsável.</td></tr>
+        <tr><td><span class="badge badge-yellow">PUT</span></td><td><code>/responsavel/{token}</code></td><td><code>AtualizarResponsavel</code></td><td>Atualiza responsável.</td></tr>
+        <tr><td><span class="badge badge-green">GET</span></td><td><code>/responsavel/{token}</code></td><td><code>GetResponsaveis</code></td><td>Lista todos os responsáveis (JSON).</td></tr>
+      </tbody>
+    </table>
+
+    <h3>Outros serviços</h3>
+    <table>
+      <thead><tr><th>Serviço</th><th>Responsabilidade</th></tr></thead>
+      <tbody>
+        <tr><td><code>Aluno.svc</code></td><td>CRUD de alunos, busca por nome/código.</td></tr>
+        <tr><td><code>Saida.svc</code></td><td>Controle de saída: inserir aluno, listar alunos aguardando/saídos.</td></tr>
+        <tr><td><code>Sessao.svc</code></td><td>Abrir, fechar e consultar sessão do dia.</td></tr>
+        <tr><td><code>Usuario.svc</code></td><td>Autenticação e gestão de usuários do sistema.</td></tr>
+        <tr><td><code>TermoRetiradaCartao.svc</code></td><td>Geração e registro de termos de retirada de cartão.</td></tr>
+      </tbody>
+    </table>
+
+    <h3>Autenticação</h3>
+    <p>Todos os endpoints recebem um parâmetro <code>token</code> na URL, validado internamente pela <code>TokenValidationBll</code>. Sem token válido, a operação é rejeitada.</p>
+  </section>
+
+  <!-- UI TV -->
+  <section id="ui-tv">
+    <h2 class="section-title"><span class="icon">📺</span> UI.TV — Painel de Cancelas</h2>
+    <p>Aplicação WPF projetada para ser exibida em monitores nas cancelas de saída. Usa MVVM com <code>DispatcherTimer</code> para polling periódico.</p>
+
+    <h3>MainWindowViewModel</h3>
+    <table>
+      <thead><tr><th>Property</th><th>Tipo</th><th>Significado</th></tr></thead>
+      <tbody>
+        <tr><td><code>AlunosParaSair</code></td><td><code>List&lt;Cancela&gt;</code></td><td>Alunos cujo responsável passou na cancela e estão aguardando (coluna esquerda do painel).</td></tr>
+        <tr><td><code>AlunosJaSairam</code></td><td><code>List&lt;Cancela&gt;</code></td><td>Alunos que já passaram pela catraca (coluna direita do painel).</td></tr>
+      </tbody>
+    </table>
+
+    <h3>Filtros aplicados na exibição</h3>
+    <ul style="margin:10px 0 10px 20px; color: var(--text);">
+      <li><strong>Curso:</strong> apenas cursos configurados em <code>Cursos</code> no App.config (ex: <code>124-126,150-165</code>)</li>
+      <li><strong>Série:</strong> alunos com série ≤ <code>MaiorSerieSegundaSaida</code></li>
+      <li><strong>Turma + Horário:</strong> turmas de manhã só aparecem no horário de saída da manhã, bilíngue no horário bilíngue, etc.</li>
+      <li><strong>Origem:</strong> filtro por origem do registro (carro, pedestre, ambos) via config <code>Origem</code></li>
+      <li><strong>Ordenação:</strong> por ordem de chegada (padrão) ou alfabética</li>
+    </ul>
+
+    <h3>Janelas de saída configuráveis</h3>
+<pre><code><span class="cm">// App.config</span>
+SaidaDaManhaHoraInicial  = 11:00
+SaidaDaManhaHoraFinal    = 14:00
+SaidaDoBilingueHoraInicial = 15:00
+SaidaDoBilingueHoraFinal   = 19:30
+SaidaDaTardeHoraInicial  = 15:00
+SaidaDaTardeHoraFinal    = 19:30</code></pre>
+  </section>
+
+  <!-- UI ADMIN -->
+  <section id="ui-admin">
+    <h2 class="section-title"><span class="icon">🔧</span> UI.CatracaAdministrador</h2>
+    <p>Interface administrativa para gestão das catracas físicas e dos cadastros nos bancos Firebird. Possui sua própria camada BLL/DAO local (não usa o WebService).</p>
+
+    <h3>Funcionalidades</h3>
+    <ul style="margin:10px 0 10px 20px; color: var(--text);">
+      <li>Cadastro/edição de <strong>Físico</strong> nos bancos Firebird por bloco (Bloco1, Bloco2, Recepção)</li>
+      <li>Gestão de <strong>Grupos de Acesso</strong> (sincroniza nos 3 bancos Firebird)</li>
+      <li>Visualização de <strong>Frequência</strong> dos alunos nas catracas</li>
+      <li>Relatório de <strong>Passagem dos Pais na Cancela</strong></li>
+      <li>Gestão de <strong>Planos de Horário</strong> de acesso</li>
+    </ul>
+
+    <div class="alert alert-info">
+      Este módulo acessa diretamente os bancos Firebird das catracas via <code>Repositorio</code> — <em>não</em> passa pelo WebService. A <code>DataBaseConnection.cs</code> gerencia as strings de conexão por bloco.
+    </div>
+  </section>
+
+  <!-- UI GESTOR -->
+  <section id="ui-gestor">
+    <h2 class="section-title"><span class="icon">👨‍👩‍👧</span> UI.GestorResponsaveis</h2>
+    <p>Aplicação WPF para cadastro e gestão dos responsáveis pelos alunos. Interface principal de operação do dia a dia para os funcionários da secretaria.</p>
+
+    <h3>Janelas disponíveis</h3>
+    <table>
+      <thead><tr><th>Janela</th><th>Função</th></tr></thead>
+      <tbody>
+        <tr><td><code>winLogin.xaml</code></td><td>Autenticação do operador</td></tr>
+        <tr><td><code>MainWindow.xaml</code></td><td>Listagem principal de responsáveis e alunos</td></tr>
+        <tr><td><code>winAddResponsavel.xaml</code></td><td>Cadastro/edição de responsável com vinculação de alunos</td></tr>
+        <tr><td><code>winSearchAluno.xaml</code></td><td>Busca de alunos para vinculação</td></tr>
+        <tr><td><code>winSearchResponsavel.xaml</code></td><td>Busca de responsáveis existentes</td></tr>
+        <tr><td><code>winResponsaveisFiltro.xaml</code></td><td>Filtragem avançada de responsáveis</td></tr>
+        <tr><td><code>winResponsavelPorCartao.xaml</code></td><td>Busca/vinculação por cartão RFID</td></tr>
+        <tr><td><code>winTermoDialog.xaml</code></td><td>Geração de termos de retirada de cartão</td></tr>
+        <tr><td><code>winReport.xaml</code></td><td>Visualização de relatórios (PDF viewer integrado)</td></tr>
+        <tr><td><code>winManual.xaml</code></td><td>Leitura manual de RFID via RfIdService</td></tr>
+      </tbody>
+    </table>
+
+    <h3>Relatórios disponíveis</h3>
+    <ul style="margin:10px 0 10px 20px; color: var(--text);">
+      <li><code>ResponsavelReportClass</code> — Ficha do responsável</li>
+      <li><code>ResponsavelTerceirosReportClass</code> — Responsáveis terceiros autorizados</li>
+      <li><code>CarteirinhaProvisoriaReportClass</code> — Carteirinha provisória de acesso</li>
+      <li><code>EtiquetasReportClass</code> — Etiquetas para cartões</li>
+    </ul>
+  </section>
+
+  <!-- SERVICES -->
+  <section id="services">
+    <h2 class="section-title"><span class="icon">⚡</span> Windows Services</h2>
+
+    <h3>MonitoraCancelas — Detalhe do Tick</h3>
+    <p>Serviço mais crítico do sistema. Lê continuamente o Oracle BHS e insere registros no SQL Server.</p>
+<pre><code><span class="cm">// Lógica simplificada do Tick()</span>
+<span class="kw">public static void</span> Tick() {
+    GetSessaoAberta();
+    <span class="kw">if</span> (SessaoAberta == <span class="kw">null</span>) return;   <span class="cm">// sem sessão → ignora</span>
+    
+    LastFrequencia = GetFrequencia();   <span class="cm">// última passagem no Oracle</span>
+    <span class="kw">var</span> iLast = int.Parse(Config.LastFrequencia); <span class="cm">// salvo em INI</span>
+    
+    <span class="kw">while</span> (iLast <= LastFrequencia.IdFrequencia) {
+        <span class="kw">var</span> freq = GetFrequencia(iLast);
+        <span class="kw">var</span> responsaveis = ResponsavelAlunoBll.GetAlunosByCartaoRfid(freq.CartaoRfid);
+        
+        <span class="kw">if</span> (!CancelaBll.HasResponsavel(sessao, responsaveis[0].IdResponsavel)) {
+            <span class="cm">// insere um registro por aluno do responsável</span>
+            CancelaBll.CadastrarCancela(cancela);
+        }
+        iLast++;
+    }
+    Config.SaveFrequencia(); <span class="cm">// persiste último ID no .INI</span>
+}</code></pre>
+
+    <h3>MonitoraAlunos — Sincronização de Alunos</h3>
+    <p>Sincroniza diariamente (ou sob demanda) o cadastro de alunos do SQL Server para as bases de catracas, por bloco de acesso.</p>
+<pre><code><span class="cm">// Fluxo do Tick()</span>
+GetAlunosNoSql()  <span class="cm">// lista AlunoCatraca do SQL</span>
+  .ForEach(aluno => {
+      <span class="cm">// por bloco: sincroniza presença do aluno</span>
+      <span class="kw">if</span> (aluno.Bloco1) InserirOuAtualizarPessoaNoBloco(Bloco1, aluno);
+      <span class="kw">else</span> DeletarPessoaNoBloco(Bloco1, aluno);
+      <span class="cm">// mesmo para Bloco2 e Recepcao...</span>
+  });</code></pre>
+
+    <h3>ImagensAlunos — SincronizarFotos</h3>
+    <p>Extrai as fotos armazenadas como <code>byte[]</code> no SQL Server e salva como arquivos <code>.jpg</code> em uma pasta de rede (usada pelos displays das catracas).</p>
+  </section>
+
+  <!-- PUBSUB -->
+  <section id="pubsub">
+    <h2 class="section-title"><span class="icon">📡</span> Infra — Redis PubSub</h2>
+    <p>A biblioteca <code>SisSeg.Infra.PubSub</code> encapsula o <strong>StackExchange.Redis</strong>. É usada para notificação em tempo real entre instâncias do <code>CancelaBll</code> e o painel TV, permitindo atualização instantânea sem polling excessivo.</p>
+<pre><code><span class="cm">// Dependências do projeto BLL</span>
+StackExchange.Redis  <span class="num">1.x</span>
+Pipelines.Sockets.Unofficial
+System.IO.Pipelines</code></pre>
+  </section>
+
+  <!-- BANCO DE DADOS -->
+  <section id="banco-dados">
+    <h2 class="section-title"><span class="icon">💾</span> Bancos de Dados</h2>
+
+    <h3>SQL Server — schema cancelas</h3>
+    <table>
+      <thead><tr><th>Tabela</th><th>Colunas chave</th><th>Descrição</th></tr></thead>
+      <tbody>
+        <tr>
+          <td><code>cancelas.Cancela</code></td>
+          <td><code>idCancela, idSessao, idAluno, idResponsavelAluno, idFrequencia, DataHoraCancela, DataHoraCatraca, DataHoraSaidaManual, saida, catraca, finalizado, aguardando, origem, segundaPassagem</code></td>
+          <td>Registro central de cada evento de saída de aluno.</td>
+        </tr>
+        <tr>
+          <td><code>cancelas.Responsavel</code></td>
+          <td><code>idResponsavel, Nome, Cpf, Rg, Celular, Email, DataNascimento, IdRfid, IdRfidWiegand, Excluido</code></td>
+          <td>Cadastro dos responsáveis autorizados.</td>
+        </tr>
+        <tr>
+          <td><code>cancelas.ResponsavelAluno</code></td>
+          <td><code>idResponsavelAluno, idAluno, idResponsavel, idVinculoComAluno, Excluido</code></td>
+          <td>Relação N:N entre responsável e aluno, com tipo de vínculo.</td>
+        </tr>
+        <tr>
+          <td><code>cancelas.Sessao</code></td>
+          <td><code>idSessao, DataHoraAbertura, DataHoraFechamento</code></td>
+          <td>Controle do dia letivo em andamento.</td>
+        </tr>
+        <tr>
+          <td><code>cancelas.Frequencia</code></td>
+          <td><code>idFrequencia, idAluno, DataHoraEntrada, DataHoraSaida, IdCatraca</code></td>
+          <td>Frequência diária do aluno (entrada/saída pela catraca).</td>
+        </tr>
+        <tr>
+          <td><code>cancelas.Excecao</code></td>
+          <td><code>idExcecao, idAluno, DataInicio, DataFim, Descricao</code></td>
+          <td>Exceções temporárias de acesso (aluno pode sair sem responsável, etc.).</td>
+        </tr>
+        <tr>
+          <td><code>cancelas.VinculoComAluno</code></td>
+          <td><code>idVinculoComAluno, Descricao</code></td>
+          <td>Tipos de vínculo (Mãe, Pai, Avó, Terceiro, etc.).</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <h3>Oracle — Sistema BHS (Barão de Mauá)</h3>
+    <table>
+      <thead><tr><th>Objeto</th><th>Descrição</th></tr></thead>
+      <tbody>
+        <tr><td><code>BHSPROD.V_LOGACE_BARAO</code></td><td>View que expõe os logs de acesso das cancelas (RFID). Colunas: <code>id_frequencia, id_pessoaFisicaAutorizada, datadapassagem, cartaorfid, idcatraca</code>. Lida pelo MonitoraCancelas.</td></tr>
+      </tbody>
+    </table>
+  </section>
+
+  <!-- ENTIDADES -->
+  <section id="entidades">
+    <h2 class="section-title"><span class="icon">📐</span> Entidades Principais</h2>
+
+    <h3>Cancela (DTO)</h3>
+<pre><code><span class="kw">public class</span> <span class="ty">Cancela</span> {
+    <span class="kw">public int</span>       IdCancela          { get; set; }
+    <span class="kw">public int</span>       IdSessao            { get; set; }
+    <span class="kw">public int</span>       IdAluno             { get; set; }
+    <span class="kw">public int</span>       IdResponsavelAluno  { get; set; }
+    <span class="kw">public int</span>       IdFrequencia        { get; set; }
+    <span class="kw">public int</span>       Origem              { get; set; } <span class="cm">// 1=carro, 2=pedestre, 0=indefinido</span>
+    <span class="kw">public DateTime</span> DataHoraCancela     { get; set; }
+    <span class="kw">public DateTime?</span> DataHoraCatraca    { get; set; }
+    <span class="kw">public DateTime?</span> DataHoraSaidaManual{ get; set; }
+    <span class="kw">public bool</span>      Saida               { get; set; }
+    <span class="kw">public bool</span>      Catraca             { get; set; }
+    <span class="kw">public bool</span>      Finalizado          { get; set; }
+    <span class="kw">public bool</span>      Aguardando          { get; set; }
+    <span class="cm">// Enum de estados:</span>
+    <span class="kw">public enum</span> CancelaEstadosAluno { ParaSair, Finalizado }
+}</code></pre>
+
+    <h3>Responsavel</h3>
+<pre><code><span class="kw">public class</span> <span class="ty">Responsavel</span> {
+    <span class="kw">public int</span>    IdResponsavel    { get; set; }
+    <span class="kw">public string</span> Nome            { get; set; }
+    <span class="kw">public string</span> Cpf             { get; set; }
+    <span class="kw">public string</span> Rg              { get; set; }
+    <span class="kw">public string</span> Celular         { get; set; }
+    <span class="kw">public string</span> Email           { get; set; }
+    <span class="kw">public string</span> IdRfid          { get; set; }
+    <span class="kw">public string</span> IdRfidWiegand   { get; set; }
+    <span class="kw">public bool</span>   Excluido        { get; set; }
+}</code></pre>
+  </section>
+
+  <!-- SQL QUERIES -->
+  <section id="sql-queries">
+    <h2 class="section-title"><span class="icon">🔍</span> Consultas SQL Críticas</h2>
+
+    <h4>Alunos aguardando saída (GetAlunosAguardandoSaida)</h4>
+<pre><code><span class="cm">-- Busca alunos cujo responsável já passou na cancela (Saida=1)
+-- e que ainda não passaram na catraca nem foram finalizados</span>
+<span class="kw">SELECT</span> c.*, ra.*, a.*, r.*
+<span class="kw">FROM</span> cancelas.Cancela c
+<span class="kw">JOIN</span> cancelas.ResponsavelAluno ra ON c.idResponsavelAluno = ra.idResponsavelAluno
+<span class="kw">JOIN</span> cancelas.Aluno a ON ra.idAluno = a.idAluno
+<span class="kw">JOIN</span> cancelas.Responsavel r ON ra.idResponsavel = r.idResponsavel
+<span class="kw">WHERE</span> c.idSessao = @idSessao
+  <span class="kw">AND</span> c.saida = <span class="num">1</span>
+  <span class="kw">AND</span> c.finalizado = <span class="num">0</span></code></pre>
+
+    <h4>Passagens na cancela (histórico)</h4>
+<pre><code><span class="kw">SELECT</span> r.Nome, c.idAluno, c.idResponsavelAluno,
+       c.DataHoraCancela, c.DataHoraCatraca, c.DataHoraSaidaManual,
+       va.Descricao
+<span class="kw">FROM</span> cancelas.cancela c
+<span class="kw">JOIN</span> cancelas.ResponsavelAluno ra ON c.idResponsavelAluno = ra.idResponsavelAluno
+<span class="kw">JOIN</span> cancelas.Responsavel r ON ra.idResponsavel = r.idResponsavel
+<span class="kw">JOIN</span> cancelas.VinculoComAluno va ON va.idVinculoComAluno = ra.idVinculoComAluno
+<span class="kw">WHERE</span> c.idAluno = @idAluno
+  <span class="kw">AND</span> c.DataHoraCancela <span class="kw">BETWEEN</span> @DataInicial <span class="kw">AND</span> @DataFinal</code></pre>
+
+    <h4>Leitura no Oracle BHS (cancela)</h4>
+<pre><code><span class="kw">SELECT</span> * <span class="kw">FROM</span> (
+    <span class="kw">SELECT</span> id_frequencia,
+           id_pessoaFisicaAutorizada <span class="kw">as</span> id_fisico,
+           datadapassagem <span class="kw">as</span> dt_ponto,
+           to_char(datadapassagem, <span class="str">'HH24:MI'</span>) <span class="kw">as</span> hr_ponto,
+           cartaorfid,
+           idcatraca id_catraca
+    <span class="kw">FROM</span> BHSPROD.V_LOGACE_BARAO
+    <span class="kw">ORDER BY</span> id_frequencia <span class="kw">desc</span>
+) <span class="kw">WHERE ROWNUM</span> &lt;=<span class="num">1</span></code></pre>
+  </section>
+
+  <!-- ORACLE -->
+  <section id="oracle">
+    <h2 class="section-title"><span class="icon">🏛️</span> Integração Oracle (Sistema BHS)</h2>
+    <p>O Oracle é somente leitura neste sistema. A view <code>BHSPROD.V_LOGACE_BARAO</code> é a ponte entre os leitores RFID físicos das cancelas e o software.</p>
+
+    <table>
+      <thead><tr><th>Campo Oracle</th><th>Campo interno</th><th>Uso</th></tr></thead>
+      <tbody>
+        <tr><td><code>id_frequencia</code></td><td><code>Frequencia.IdFrequencia</code></td><td>Chave de controle de sequência (LastFrequencia no INI)</td></tr>
+        <tr><td><code>id_pessoaFisicaAutorizada</code></td><td><code>Frequencia.IdFisico</code></td><td>ID do responsável no sistema BHS</td></tr>
+        <tr><td><code>cartaorfid</code></td><td><code>Frequencia.CartaoRfid</code></td><td>Código RFID lido — chave para identificar o responsável</td></tr>
+        <tr><td><code>datadapassagem</code></td><td><code>Frequencia.DtPonto</code></td><td>Data/hora da passagem na cancela</td></tr>
+        <tr><td><code>idcatraca</code></td><td><code>Frequencia.IdCatraca</code></td><td>201=cancela carro, 202=totem pedestre</td></tr>
+      </tbody>
+    </table>
+  </section>
+
+  <!-- CONFIG -->
+  <section id="config">
+    <h2 class="section-title"><span class="icon">🛠️</span> App.config por Módulo</h2>
+
+    <h3>ControleAcessoCancelas (Painel TV)</h3>
+    <table>
+      <thead><tr><th>Chave</th><th>Valor exemplo</th><th>Descrição</th></tr></thead>
+      <tbody>
+        <tr><td><code>Ambiente</code></td><td><code>2</code></td><td>1=Teste, 2=Produção</td></tr>
+        <tr><td><code>Bloco</code></td><td><code>Bloco1</code></td><td>Instância da cancela: Bloco1, Bloco2, Infantil, ExternoBloco1</td></tr>
+        <tr><td><code>Ordenacao</code></td><td><code>1</code></td><td>1=Chegada, 2=Alfabética</td></tr>
+        <tr><td><code>Cursos</code></td><td><code>124-126,150-165</code></td><td>Ranges de códigos de curso. O filtro efetivo aplicado <strong>depende do Bloco</strong> — veja seção abaixo.</td></tr>
+        <tr><td><code>MaiorSerieBilingue</code></td><td><code>3</code></td><td>Série máxima para horário bilíngue</td></tr>
+        <tr><td><code>MaiorSerieSegundaSaida</code></td><td><code>10</code></td><td>Série máxima exibida no painel</td></tr>
+        <tr><td><code>TempoRefresh</code></td><td><code>3</code></td><td>Intervalo de polling em segundos</td></tr>
+        <tr><td><code>Origem</code></td><td><code>3</code></td><td>0=nenhum, 1=carro, 2=pedestre, 3=todos</td></tr>
+        <tr><td><code>TurmasManha</code></td><td><code>ABCDEFGHI1INF...</code></td><td>Letras/códigos de turmas da manhã</td></tr>
+        <tr><td><code>SaidaDaManhaHoraInicial</code></td><td><code>11</code></td><td>Início da janela de saída da manhã</td></tr>
+        <tr><td><code>ValidarSeAlunoPassouNaCatracaParaEntrar</code></td><td><code>true/false</code></td><td>Exige que aluno tenha registro de entrada antes de aparecer na lista</td></tr>
+      </tbody>
+    </table>
+
+    <h3>MonitoraCancelas</h3>
+    <table>
+      <thead><tr><th>Chave</th><th>Descrição</th></tr></thead>
+      <tbody>
+        <tr><td><code>Cancelas</code> (connectionString)</td><td>String de conexão Oracle (BHS)</td></tr>
+        <tr><td><code>LiceuDB</code> (connectionString)</td><td>String de conexão SQL Server (cancelas)</td></tr>
+        <tr><td><code>LogType</code></td><td>Verbose ou normal</td></tr>
+        <tr><td><code>LastFrequencia</code></td><td>Persistido em INI — último ID Oracle processado</td></tr>
+      </tbody>
+    </table>
+  </section>
+
+  <!-- BLOCO CURSOS -->
+  <section id="bloco-cursos">
+    <h2 class="section-title"><span class="icon">🏷️</span> Bloco × Filtro de Cursos</h2>
+    <p>A chave <code>Bloco</code> no <code>App.config</code> não é apenas um rótulo — ela <strong>controla quais cursos do range configurado em <code>Cursos</code> serão efetivamente aceitos</strong> pelo método <code>Configuracao.GetCursos()</code>. O range no config é o universo possível; o Bloco é o filtro que recorta esse universo.</p>
+
+    <div class="alert alert-warn">
+      <strong>Atenção:</strong> Apenas <code>Bloco1</code> e <code>Infantil</code> possuem filtro de curso implementado. Os demais valores de Bloco (<code>Bloco2</code>, <code>Bloco3</code>, <code>ExternoBloco1</code>) <em>não entram em nenhum <code>if</code></em> dentro do loop de ranges — o que significa que cursos especificados como range (ex: <code>124-126</code>) são silenciosamente ignorados para esses blocos. Apenas IDs avulsos (sem hífen) passam normalmente.
+    </div>
+
+    <h3>Lógica do GetCursos()</h3>
+<pre><code><span class="kw">public static</span> List&lt;<span class="ty">int</span>&gt; GetCursos()
+{
+    <span class="kw">var</span> cursos = <span class="kw">new</span> List&lt;<span class="ty">int</span>&gt;();
+    <span class="kw">foreach</span> (<span class="kw">var</span> cursosSet <span class="kw">in</span> Cursos.Split(<span class="str">','</span>))    <span class="cm">// ex: "124-126" ou "150-165"</span>
+    {
+        <span class="kw">var</span> set = cursosSet.Split(<span class="str">'-'</span>);
+        <span class="kw">if</span> (set.Length == <span class="num">2</span>)    <span class="cm">// é um range</span>
+        {
+            <span class="kw">for</span> (<span class="kw">int</span> i = set_i; i &lt;= set_f; i++)
+            {
+                <span class="kw">if</span> (IsBloco1)
+                {
+                    <span class="kw">if</span> (<span class="num">124</span> &lt;= i &amp;&amp; i &lt;= <span class="num">126</span>) cursos.Add(i);  <span class="cm">// hardcoded!</span>
+                }
+                <span class="kw">else if</span> (IsInfantil)
+                {
+                    <span class="kw">if</span> (<span class="num">150</span> &lt;= i &amp;&amp; i &lt;= <span class="num">165</span>) cursos.Add(i);  <span class="cm">// hardcoded!</span>
+                }
+                <span class="cm">// Bloco2, Bloco3, ExternoBloco1 → não entram em nenhum if → curso ignorado</span>
+            }
+        }
+        <span class="kw">if</span> (int.TryParse(cursosSet, <span class="kw">out var</span> curso_id))   <span class="cm">// é um ID avulso (sem hífen)</span>
+        {
+            cursos.Add(curso_id);   <span class="cm">// adicionado sem filtro de Bloco</span>
+        }
+    }
+    <span class="kw">return</span> cursos;
+}</code></pre>
+
+    <h3>Comportamento por Bloco com o config padrão (<code>Cursos=124-126,150-165</code>)</h3>
+    <table>
+      <thead><tr><th>Bloco (App.config)</th><th>Cursos efetivos gerados</th><th>Observação</th></tr></thead>
+      <tbody>
+        <tr>
+          <td><code>Bloco1</code></td>
+          <td><code>[124, 125, 126]</code></td>
+          <td>Apenas o range <code>124–126</code> passa. O range <code>150–165</code> é percorrido mas nenhum <code>if</code> aceita esses valores para Bloco1 → descartados.</td>
+        </tr>
+        <tr>
+          <td><code>Infantil</code></td>
+          <td><code>[150, 151, ..., 165]</code></td>
+          <td>Apenas o range <code>150–165</code> passa. O range <code>124–126</code> é percorrido mas descartado, pois não cai no <code>if (IsInfantil)</code>.</td>
+        </tr>
+        <tr>
+          <td><code>Bloco2</code> / <code>Bloco3</code> / <code>ExternoBloco1</code></td>
+          <td><code>[]</code> (lista vazia para ranges)</td>
+          <td>Nenhum <code>if</code> cobre esses blocos dentro do loop de range. IDs avulsos (sem hífen) ainda seriam adicionados, mas o config padrão usa apenas ranges.</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <div class="alert alert-info">
+      <strong>Por que os ranges estão hardcoded?</strong> Os valores <code>124–126</code> e <code>150–165</code> são os códigos de curso do ERP da instituição para, respectivamente, o Ensino Fundamental (Bloco1) e a Educação Infantil. A chave <code>Cursos</code> no config define o <em>universo a percorrer</em>, mas a decisão de quais IDs são válidos para cada Bloco está embutida no código — o que significa que <strong>adicionar um novo bloco requer alteração no código-fonte</strong> do <code>GetCursos()</code>, não apenas no config.
+    </div>
+
+    <h3>Valores possíveis de Bloco</h3>
+    <table>
+      <thead><tr><th>Valor</th><th>Flag correspondente</th><th>Uso</th></tr></thead>
+      <tbody>
+        <tr><td><code>Bloco1</code></td><td><code>Configuracao.IsBloco1</code></td><td>Painel principal do Ensino Fundamental. Cursos 124–126.</td></tr>
+        <tr><td><code>Infantil</code></td><td><code>Configuracao.IsInfantil</code></td><td>Painel da Educação Infantil. Cursos 150–165.</td></tr>
+        <tr><td><code>Bloco2</code></td><td><code>Configuracao.IsBloco2</code></td><td>Segundo bloco físico. Sem filtro de curso implementado.</td></tr>
+        <tr><td><code>Bloco3</code></td><td><code>Configuracao.IsBloco3</code></td><td>Terceiro bloco. Sem filtro de curso implementado.</td></tr>
+        <tr><td><code>ExternoBloco1</code></td><td><code>Configuracao.IsExternoBloco1</code></td><td>Acesso externo ao Bloco1. Sem filtro de curso implementado.</td></tr>
+      </tbody>
+    </table>
+  </section>
+
+  <!-- INI FILES -->
+  <section id="ini-files">
+    <h2 class="section-title"><span class="icon">📄</span> Arquivos INI</h2>
+    <p>O cliente WPF <code>ControleAcessoCancelas</code> usa um arquivo <code>WebServices.ini</code> para configurar as URLs dos serviços. Lido pela classe <code>IniFile</code> / <code>WsAddress</code>.</p>
+<pre><code>[BASE]
+URLBase=http://servidor:porta/
+
+[SESSAO]
+URLSessaoSVC=sessao.svc/
+
+[SAIDA]
+URLSaidaSVC=saida.svc/
+</code></pre>
+
+    <p>O <code>MonitoraCancelas</code> usa um INI local para persistir o <code>LastFrequencia</code> entre reinicializações do serviço:</p>
+<pre><code>[CONFIG]
+LastFrequencia=<span class="num">123456</span>
+LogType=Verbose</code></pre>
+
+    <div class="alert alert-success">
+      <strong>Dica de operação:</strong> Em caso de perda de eventos de cancela, basta decrementar o valor de <code>LastFrequencia</code> no INI do <code>MonitoraCancelas</code> e reiniciar o serviço. Ele reprocessará os eventos a partir daquele ID.
+    </div>
+  </section>
+
+</main>
+
+<script>
+  // Highlight active nav link on scroll
+  const sections = document.querySelectorAll('section[id]');
+  const navLinks = document.querySelectorAll('nav a[href^="#"]');
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        navLinks.forEach(l => l.classList.remove('active'));
+        const link = document.querySelector(`nav a[href="#${e.target.id}"]`);
+        if (link) link.classList.add('active');
+      }
+    });
+  }, { threshold: 0.3 });
+  sections.forEach(s => observer.observe(s));
+</script>
+</body>
+</html>

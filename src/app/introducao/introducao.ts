@@ -6,7 +6,7 @@ import { MatIconModule } from '@angular/material/icon';
   selector: 'app-introducao',
   imports: [MatCardModule, MatButtonModule, MatIconModule],
   templateUrl: './introducao.html',
-  styleUrl: './introducao.css',
+  styleUrls: ['./introducao.css'],
 })
 export class Introducao {
   scroll(contato: string) {

@@ -12,7 +12,7 @@ import { Header } from './header/header';
   imports: [RouterOutlet, Contato, Introducao, Projeto, Sobre, Header, Capa],
   standalone: true,
   templateUrl: './app.html',
-  styleUrl: './app.css'
+  styleUrls: ['./app.css']
 })
 export class App {
   protected readonly title = signal('isabella');

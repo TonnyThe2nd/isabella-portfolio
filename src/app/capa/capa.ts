@@ -4,7 +4,7 @@ import { Component } from '@angular/core';
   selector: 'app-capa',
   imports: [],
   templateUrl: './capa.html',
-  styleUrl: './capa.css',
+  styleUrls: ['./capa.css'],
 })
 export class Capa {
 
